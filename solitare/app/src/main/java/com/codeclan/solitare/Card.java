@@ -5,9 +5,9 @@ package com.codeclan.solitare;
  */
 
 public class Card {
-    String rank;
-    String suit;
-    boolean revealed;
+    private String rank;
+    private String suit;
+    private boolean revealed;
 
-    
+
 }
