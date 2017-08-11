@@ -11,11 +11,11 @@ import java.util.HashMap;
 
 public class Deck {
 
-    ArrayList<String> ranks;
-    ArrayList<String> suits;
-    HashMap<String, Integer> cardValues;
-    HashMap<String, Integer> suitValues;
-    ArrayList<Card> deck;
+    private ArrayList<String> ranks;
+    private ArrayList<String> suits;
+    private HashMap<String, Integer> cardValues;
+    private HashMap<String, Integer> suitValues;
+    private ArrayList<Card> deck;
 
 
     public Deck(){
