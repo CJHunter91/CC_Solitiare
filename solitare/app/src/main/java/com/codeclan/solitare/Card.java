@@ -27,4 +27,7 @@ public class Card {
     public boolean isRevealed() {
         return revealed;
     }
+    public void reveal(){
+        this.revealed = true;
+    }
 }

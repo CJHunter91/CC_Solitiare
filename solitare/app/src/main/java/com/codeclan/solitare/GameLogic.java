@@ -26,7 +26,23 @@ public class GameLogic {
         potentialMovesForCard.clear();
         deck = new Deck();
 
+        for(int i=0; i < 7; i++){
+            gameStacks.add(new ArrayList<Card>());
+        }
 
+        int count = 0;
+
+        for(int stack=0; stack < 7; stack++){
+            for(int item=0; item <= count; item++){
+                Card card = deck.draw();
+                //reveal the last card
+                if(item == count) {
+                    card.reveal();
+                }
+                gameStacks.get(stack).add(card);
+            }
+            count++;
+        }
 
     }
 }
