@@ -34,15 +34,24 @@ public class GameLogic {
         return gameStacks;
     }
 
-    private void buildGameStack(){
-        //initialize the gameStacks array
-        for(int i=0; i < 7; i++){
-            gameStacks.add(new ArrayList<Card>());
+    public ArrayList<ArrayList<Card>> getAceStacks(){
+        return aceStacks;
+    }
+
+
+
+    private void  buildAceStack(){
+        for(int i=0; i <5; i++){
+            aceStacks.add(new ArrayList<Card>());
         }
+    }
+
+    private void buildGameStack(){
 
         int count = 0;
 
         for(int stack=0; stack < 7; stack++){
+            gameStacks.add(new ArrayList<Card>());
             for(int item=0; item <= count; item++){
                 Card card = deck.draw();
                 //reveal the last card
