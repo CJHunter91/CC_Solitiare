@@ -3,6 +3,7 @@ package com.codeclan.solitare;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -65,6 +66,10 @@ public class Deck {
 
     public int getSuitValue(Card card) {
         return this.suitValues.get(card.getSuit());
+    }
+
+    public void shuffleDeck(){
+        Collections.shuffle(this.deck);
     }
 
     @Override

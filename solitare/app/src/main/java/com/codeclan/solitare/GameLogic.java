@@ -10,5 +10,17 @@ public class GameLogic {
     private ArrayList<ArrayList<Card>> aceStacks;
     private ArrayList<ArrayList<Card>> gameStacks;
     private ArrayList<Card> potentialMovesForCard;
-    private ArrayList<Card> remainingDeck;
+    private Deck deck;
+
+    public GameLogic(){
+        this.deck = new Deck();
+        this.gameStacks = new ArrayList<>();
+        this.aceStacks = new ArrayList<>();
+        this.potentialMovesForCard = new ArrayList<>();
+        this.deck = new Deck();
+    }
+
+    public void newGame() {
+
+    }
 }
