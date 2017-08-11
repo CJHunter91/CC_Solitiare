@@ -70,6 +70,14 @@ public class Deck {
     @Override
     public String toString(){
         String s = "";
-        for(Card card:)
+        for(Card card: this.deck){
+            if(this.deck.indexOf(card) == this.deck.size()-1){
+                s += card.getRank() + ":" + card.getSuit();
+            }
+            else{
+                s += card.getRank() + ":" + card.getSuit() + ", ";
+            }
+        }
+        return s;
     }
 }
