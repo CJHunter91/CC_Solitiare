@@ -12,10 +12,12 @@ import static org.junit.Assert.assertEquals;
 public class CardTest {
 
     Card card;
+    Card card2;
 
     @Before
     public void before(){
         card = new Card("A", "S", false);
+        card2 = new Card("5", "D", true);
     }
 
     @Test
@@ -26,5 +28,11 @@ public class CardTest {
     @Test
     public void canGetSuit(){
         assertEquals("S", card.getSuit());
+    }
+
+    @Test
+    public void isRevealed(){
+        assertEquals(false, card.isRevealed());
+        assertEquals(true, card2.isRevealed());
     }
 }
