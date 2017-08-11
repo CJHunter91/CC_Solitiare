@@ -19,10 +19,10 @@ public class GameLogicTest {
         game = new GameLogic();
     }
 
-    @Test
-    public void canSetupGameStacks(){
-        game.newGame();
-        assertEquals(7, game.getStacks().size);
-    }
+//    @Test
+//    public void canSetupGameStacks(){
+//        game.newGame();
+//        assertEquals(7, game.getStacks().size);
+//    }
 
 }

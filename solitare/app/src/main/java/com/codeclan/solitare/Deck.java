@@ -73,6 +73,15 @@ public class Deck {
         Collections.shuffle(this.deck);
     }
 
+    public Card draw(){
+        Card card = deck.get(deck.size()-1);
+        deck.remove(deck.size()-1);
+        return card;
+
+    }
+
+
+
     @Override
     public String toString(){
         String s = "";

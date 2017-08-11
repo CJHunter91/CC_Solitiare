@@ -56,6 +56,6 @@ public class DeckTest {
 
     @Test
     public void drawCardTest(){
-        assertEquals(card.getClass(), deck.draw());
+        assertEquals(card.getClass(), deck.draw().getClass());
     }
 }
