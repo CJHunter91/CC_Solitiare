@@ -50,6 +50,9 @@ To get the next card in the deck pile
 
 Check the game is won when size of all ace stacks are == 13
 
+Display
+Use seven instances of an adapter that take a stack array to display them.
+onClick of each particular card will use move card
 
 
 extensions
