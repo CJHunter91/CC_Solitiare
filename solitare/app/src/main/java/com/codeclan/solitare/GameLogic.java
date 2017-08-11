@@ -27,6 +27,7 @@ public class GameLogic {
         deck = new Deck();
 
         buildGameStack();
+        buildAceStack();
     }
 
     public ArrayList<ArrayList<Card>> getGameStacks(){

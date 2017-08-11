@@ -41,5 +41,10 @@ public class GameLogicTest {
             assertEquals(true, stack.get(stack.size()-1).isRevealed());
         }
     }
+    
+    @Test
+    public void testAceStacks(){
+        assertEquals(4, game.getAceStacks().getClass());
+    }
 
 }
