@@ -26,6 +26,12 @@ public class GameLogic {
         potentialMovesForCard.clear();
         deck = new Deck();
 
+        buildGameStack();
+
+    }
+
+    private void buildGameStack(){
+        //initialize the gameStacks array
         for(int i=0; i < 7; i++){
             gameStacks.add(new ArrayList<Card>());
         }
@@ -43,6 +49,5 @@ public class GameLogic {
             }
             count++;
         }
-
     }
 }
