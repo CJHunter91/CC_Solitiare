@@ -10,4 +10,13 @@ public class Card {
     private boolean revealed;
 
 
+    public Card(String rank, String suit, boolean revealed){
+        this.rank = rank;
+        this.suit = suit;
+        this.revealed = revealed;
+    }
+
+    public String getRank() {
+        return rank;
+    }
 }

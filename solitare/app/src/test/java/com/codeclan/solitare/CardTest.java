@@ -15,11 +15,16 @@ public class CardTest {
 
     @Before
     public void before(){
-        card = new Card("A", "S");
+        card = new Card("A", "S", false);
     }
-    
+
+    @Test
+    public void canGetRank(){
+        assertEquals("A", card.getRank());
+    }
+
     @Test
     public void canGetSuit(){
-        assertEquals("A", card.getRank());
+        assertEquals("S", card.getSuit());
     }
 }
