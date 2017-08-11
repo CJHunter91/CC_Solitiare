@@ -7,10 +7,12 @@ MVP
   -ability to create a new game
   -board populates with cards
   -board knows valid moves
-  -ablility to click on card to move it
+  -ablility to move cards
   -game knows when all the cards are stacked(win)
 
 Extensions
+  -potententialluy use select to move the cards
+  -implement ui
   -implement drag and drop
   -have card backs in the row of cards
   -save current game state and load on startup
