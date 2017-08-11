@@ -27,4 +27,9 @@ public class DeckTest {
         ArrayList<Card> cardDeck = deck.getDeck();
         assertEquals(card.getClass(),cardDeck.get(0).getClass() );
     }
+
+    @Test
+    public void getCardValue(){
+        assertEquals(0, deck.getCardValue(card));
+    }
 }
