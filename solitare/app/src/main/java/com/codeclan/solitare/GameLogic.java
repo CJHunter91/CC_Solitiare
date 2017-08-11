@@ -20,7 +20,13 @@ public class GameLogic {
         this.deck = new Deck();
     }
 
-    public void newGame() {
+    public void newGame(){
+        aceStacks.clear();
+        gameStacks.clear();
+        potentialMovesForCard.clear();
+        deck = new Deck();
+
+
 
     }
 }

@@ -51,6 +51,11 @@ public class DeckTest {
     @Test
     public void deckToString(){
         deck.shuffleDeck();
-        assertEquals("",deck.toString());
+        assertNotNull(deck.toString());
+    }
+
+    @Test
+    public void drawCardTest(){
+        assertEquals(card.getClass(), deck.draw());
     }
 }
