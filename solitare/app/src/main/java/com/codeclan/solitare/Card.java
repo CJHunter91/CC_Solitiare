@@ -24,4 +24,7 @@ public class Card {
         return suit;
     }
 
+    public boolean isRevealed() {
+        return revealed;
+    }
 }
