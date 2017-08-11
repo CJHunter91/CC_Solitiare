@@ -18,6 +18,7 @@ public class GameLogicTest {
     public void before(){
         game = new GameLogic();
         stacks = game.getGameStacks();
+
     }
 
     @Test
@@ -54,5 +55,13 @@ public class GameLogicTest {
         game.newGame();
         assertEquals(4, game.getAceStacks().size());
     }
+
+    @Test
+    public void testCanChangeCardtoRevealed(){
+        game.newGame();
+        stacks.get(2).get(1).reveal();
+        assertEquals(true, stacks.get(2).get(1).isRevealed());
+    }
+
 
 }
