@@ -13,16 +13,26 @@ import static org.junit.Assert.assertEquals;
 
 public class GameLogicTest {
     GameLogic game;
-
+    ArrayList<ArrayList<Card>> stacks;
     @Before
     public void before(){
         game = new GameLogic();
+        stacks = game.getGameStacks();
     }
 
-//    @Test
-//    public void canSetupGameStacks(){
-//        game.newGame();
-//        assertEquals(7, game.getStacks().size);
-//    }
+    @Test
+    public void canSetupGameStacks(){
+        game.newGame();
+        assertEquals(7, stacks.size());
+    }
+
+    @Test
+    public void testInnerStackSize(){
+        int count = 1;
+        for(ArrayList<Card> stack : stacks ){
+            assertEquals(count, stack.size());
+            count++;
+        }
+    }
 
 }

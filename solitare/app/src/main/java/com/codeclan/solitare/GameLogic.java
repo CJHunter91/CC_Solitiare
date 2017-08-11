@@ -27,7 +27,10 @@ public class GameLogic {
         deck = new Deck();
 
         buildGameStack();
+    }
 
+    public ArrayList<ArrayList<Card>> getGameStacks(){
+        return gameStacks;
     }
 
     private void buildGameStack(){
@@ -47,7 +50,9 @@ public class GameLogic {
                 }
                 gameStacks.get(stack).add(card);
             }
+            //used to add extra card next iteration
             count++;
         }
     }
+
 }
