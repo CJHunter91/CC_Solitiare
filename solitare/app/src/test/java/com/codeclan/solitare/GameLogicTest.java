@@ -34,5 +34,12 @@ public class GameLogicTest {
             count++;
         }
     }
+    @Test
+    public void testInnerStackCardReveal(){
+        for(ArrayList<Card> stack : stacks){
+            assertEquals(false, stack.get(stack.size()-1).isRevealed());
+            assertEquals(true, stack.get(stack.size()-1).isRevealed());
+        }
+    }
 
 }
