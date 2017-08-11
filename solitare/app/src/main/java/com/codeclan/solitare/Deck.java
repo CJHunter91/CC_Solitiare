@@ -58,5 +58,7 @@ public class Deck {
     }
 
 
-
+    public int getCardValue(Card card) {
+        return this.cardValues.get(card.getRank());
+    }
 }
