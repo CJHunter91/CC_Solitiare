@@ -36,4 +36,11 @@ public class DeckTest {
         assertEquals(0, deck.getCardValue(card));
         assertEquals(9, deck.getCardValue(card2));
     }
+
+    @Test
+    public void getSuitValue(){
+        assertEquals(2, deck.getSuitValue(card));
+        assertEquals(3, deck.getSuitValue(card2));
+
+    }
 }

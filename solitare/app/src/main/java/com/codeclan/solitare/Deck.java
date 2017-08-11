@@ -27,7 +27,7 @@ public class Deck {
 
 
         this.suitValues.put("S", 0);this.suitValues.put("H", 1);this.suitValues.put("D", 2);
-        this.suitValues.put("C", 0);
+        this.suitValues.put("C", 3);
 
 
         genererateCardValues();
@@ -60,5 +60,10 @@ public class Deck {
 
     public int getCardValue(Card card) {
         return this.cardValues.get(card.getRank());
+    }
+
+
+    public int getSuitValue(Card card) {
+        return this.suitValues.get(card.getSuit());
     }
 }
