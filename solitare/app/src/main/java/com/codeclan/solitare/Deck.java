@@ -66,4 +66,10 @@ public class Deck {
     public int getSuitValue(Card card) {
         return this.suitValues.get(card.getSuit());
     }
+
+    @Override
+    public String toString(){
+        String s = "";
+        for(Card card:)
+    }
 }

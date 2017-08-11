@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by user on 11/08/2017.
@@ -42,5 +43,13 @@ public class DeckTest {
         assertEquals(2, deck.getSuitValue(card));
         assertEquals(3, deck.getSuitValue(card2));
 
+    }
+    @Test
+    public void getDeckIsCorrectSize(){
+        assertEquals(52, deck.getDeck().size());
+    }
+    @Test
+    public void deckToString(){
+        assertEquals("", deck.toString());
     }
 }
