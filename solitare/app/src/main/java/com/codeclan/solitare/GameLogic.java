@@ -41,7 +41,7 @@ public class GameLogic {
 
 
     private void  buildAceStack(){
-        for(int i=0; i <5; i++){
+        for(int i=0; i <4; i++){
             aceStacks.add(new ArrayList<Card>());
         }
     }

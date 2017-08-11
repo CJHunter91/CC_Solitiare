@@ -24,10 +24,12 @@ public class GameLogicTest {
     public void canSetupGameStacks(){
         game.newGame();
         assertEquals(7, stacks.size());
+
     }
 
     @Test
     public void testInnerStackSize(){
+        game.newGame();
         int count = 1;
         for(ArrayList<Card> stack : stacks ){
             assertEquals(count, stack.size());
@@ -36,15 +38,21 @@ public class GameLogicTest {
     }
     @Test
     public void testInnerStackCardReveal(){
+        game.newGame();
+        int count =0;
         for(ArrayList<Card> stack : stacks){
-            assertEquals(false, stack.get(stack.size()-1).isRevealed());
+            if(count>0) {
+                assertEquals(false, stack.get(stack.size() - 2).isRevealed());
+                count++;
+            }
             assertEquals(true, stack.get(stack.size()-1).isRevealed());
         }
     }
 
-//    @Test
-//    public void testAceStacks(){
-//        assertEquals(4, game.getAceStacks().size());
-//    }
+    @Test
+    public void testAceStacks(){
+        game.newGame();
+        assertEquals(4, game.getAceStacks().size());
+    }
 
 }
