@@ -2,6 +2,7 @@ package com.codeclan.solitare;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * Created by user on 11/08/2017.
@@ -56,6 +57,10 @@ public class GameLogic {
 
     public Card getCard(int stack, int stackItem){
         return gameStacks.get(stack).get(stackItem);
+    }
+
+    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
+
     }
 
 

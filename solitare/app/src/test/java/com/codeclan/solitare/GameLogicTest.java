@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -19,6 +20,10 @@ public class GameLogicTest {
     public void before(){
         game = new GameLogic();
         stacks = game.getGameStacks();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
 
     }
 
@@ -95,6 +100,9 @@ public class GameLogicTest {
     @Test
     public void testCanGetPotentialMoves(){
         game.newGame();
+
+        assertEquals(true,game.getMoves(2,2).containsKey(1));
+        assertEquals(true,game.getMoves(2,2).containsValue(1));
 
     }
 
