@@ -17,6 +17,7 @@ public class Deck {
     private HashMap<String, Integer> cardValues;
     private HashMap<String, Integer> suitValues;
     private ArrayList<Card> deck;
+    private HashMap<String, String> suitColour;
 
 
     public Deck(){
@@ -30,6 +31,9 @@ public class Deck {
 
         this.suitValues.put("S", 0);this.suitValues.put("H", 1);this.suitValues.put("D", 2);
         this.suitValues.put("C", 3);
+
+        this.suitColour.put("S","B");this.suitColour.put("H","R");this.suitColour.put("D","R");
+        this.suitColour.put("C","B");
 
 
         genererateCardValues();
@@ -68,6 +72,10 @@ public class Deck {
 
     public int getSuitValue(Card card) {
         return this.suitValues.get(card.getSuit());
+    }
+
+    public String getSuitColour(Card card){
+        return this.suitColour.get(card.getSuit());
     }
 
     public void shuffleDeck(){

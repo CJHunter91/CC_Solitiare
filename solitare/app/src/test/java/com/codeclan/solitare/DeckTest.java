@@ -61,6 +61,7 @@ public class DeckTest {
 
     @Test
     public void canCheckSuitColour(){
-        assertEquals("R",deck.getColour(card));
+        assertEquals("R",deck.getSuitColour(card));
+        assertEquals("B", deck.getSuitColour(card2));
     }
 }
