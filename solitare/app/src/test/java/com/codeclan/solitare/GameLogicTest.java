@@ -92,6 +92,12 @@ public class GameLogicTest {
         assertEquals(8,stacks.get(0).size());
     }
 
+    @Test
+    public void testCanGetPotentialMoves(){
+        game.newGame();
+
+    }
+
 
 
 

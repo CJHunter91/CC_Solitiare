@@ -58,4 +58,9 @@ public class DeckTest {
     public void drawCardTest(){
         assertEquals(card.getClass(), deck.draw().getClass());
     }
+
+    @Test
+    public void canCheckSuitColour(){
+        assertEquals("R",deck.getColour(card));
+    }
 }

@@ -24,6 +24,7 @@ public class Deck {
         this.suits = new ArrayList<>(Arrays.asList("S","H","D","C"));
         this.cardValues = new HashMap<>();
         this.suitValues = new HashMap<>();
+        this.suitColour = new HashMap<>();
         this.deck = new ArrayList<>();
 
 
