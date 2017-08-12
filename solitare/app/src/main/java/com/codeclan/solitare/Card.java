@@ -30,4 +30,12 @@ public class Card {
     public void reveal(){
         this.revealed = true;
     }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public void setSuit(String suit) {
+        this.suit = suit;
+    }
 }

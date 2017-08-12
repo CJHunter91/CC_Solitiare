@@ -41,4 +41,10 @@ public class CardTest {
         card.setRank("4");
         assertEquals("4", card.getRank());
     }
+
+    @Test
+    public void canSetSuit(){
+        card.setSuit("C");
+        assertEquals("C", card.getSuit());
+    }
 }
