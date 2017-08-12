@@ -11,7 +11,7 @@ MVP
   -game knows when all the cards are stacked(win)
 
 Extensions
-  -potententialluy use select to move the cards
+  -potententially use select to move the cards
   -implement ui
   -implement drag and drop
   -have card backs in the row of cards

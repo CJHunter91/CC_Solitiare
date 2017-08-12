@@ -35,4 +35,10 @@ public class CardTest {
         assertEquals(false, card.isRevealed());
         assertEquals(true, card2.isRevealed());
     }
+
+    @Test
+    public void  canSetRank(){
+        card.setRank("4");
+        assertEquals("4", card.getRank());
+    }
 }

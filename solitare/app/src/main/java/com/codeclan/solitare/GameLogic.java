@@ -33,12 +33,13 @@ public class GameLogic {
 
     public void move(int stack, int stackItem, int targetStack){
         ArrayList<Card> temp = new ArrayList<>();
-        for(int i = this.gameStacks.get(stack).size()-1; i >= stackItem; i--){
+        //iterate through the stack to add each card to temp in prep for move
+        //removing each card from the moving stack
+        for(int i = this.gameStacks.get(stack).size()-1; i >= stackItem; i--) {
             temp.add(getCard(stack, i));
             this.gameStacks.get(stack).remove(i);
         }
-        System.out.println(temp);
-//        Collections.reverse(temp);
+        //adds each card from temp to the target stack
         for(int j = temp.size()-1; j >= 0; j--){
             this.gameStacks.get(targetStack).add(temp.get(j));
 
