@@ -20,6 +20,7 @@ public class GameLogicTest {
     public void before(){
         game = new GameLogic();
         stacks = game.getGameStacks();
+        game.newGame();
         game.getCard(1,1).setRank("10");
         game.getCard(1,1).setSuit("D");
         game.getCard(2,2).setRank("9");
@@ -98,13 +99,16 @@ public class GameLogicTest {
     }
 
     @Test
-    public void testCanGetPotentialMoves(){
-        game.newGame();
-
-        assertEquals(true,game.getMoves(2,2).containsKey(1));
-        assertEquals(true,game.getMoves(2,2).containsValue(1));
-
+    public void testIsValidMove(){
+        assertEquals(true, game.isValidMove(game.getCard(2,2),game.getCard(1,1)));
     }
+//    @Test
+//    public void testCanGetPotentialMoves(){
+//
+//        assertEquals(true,game.getMoves(2,2).containsKey(1));
+//        assertEquals(true,game.getMoves(2,2).containsValue(1));
+//
+//    }
 
 
 

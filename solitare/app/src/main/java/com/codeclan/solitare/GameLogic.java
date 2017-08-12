@@ -11,21 +11,18 @@ import java.util.HashMap;
 public class GameLogic {
     private ArrayList<ArrayList<Card>> aceStacks;
     private ArrayList<ArrayList<Card>> gameStacks;
-    private ArrayList<Card> potentialMovesForCard;
     private Deck deck;
 
     public GameLogic(){
         this.deck = new Deck();
         this.gameStacks = new ArrayList<>();
         this.aceStacks = new ArrayList<>();
-        this.potentialMovesForCard = new ArrayList<>();
         this.deck = new Deck();
     }
 
     public void newGame(){
         aceStacks.clear();
         gameStacks.clear();
-        potentialMovesForCard.clear();
         deck = new Deck();
 
         buildGameStack();
@@ -59,9 +56,35 @@ public class GameLogic {
         return gameStacks.get(stack).get(stackItem);
     }
 
-    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
+    public boolean isValidMove(Card moveCard, Card targetCard) {
+        int moveValue = deck.getCardValue(moveCard);
+        int targetValue = deck.getCardValue(targetCard);
+        String moveColour = deck.getSuitColour(moveCard);
+        String targetColour = deck.getSuitColour(targetCard);
 
+            if(moveCard.isRevealed() && targetCard.isRevealed()){
+                if(targetValue == (moveValue+1)){
+                    if(moveColour != targetColour){
+                        return true;
+                    }
+                    else {
+                        System.out.println("Colours are not opposite");
+                    }
+                }
+                else{
+                    System.out.println("Not correct card values");
+                }
+            }
+            else{
+                System.out.println("Not Revealed");
+            }
+
+        return false;
     }
+
+//    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
+//        Card card = gameStacks.get();
+//    }
 
 
 
@@ -89,5 +112,6 @@ public class GameLogic {
             count++;
         }
     }
+
 
 }

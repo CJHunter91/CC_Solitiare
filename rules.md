@@ -36,10 +36,11 @@ Click on ace spot(moveToAce)
   -use similar logic(as move a card) to move target card to ace stack
   -if size is >= 13 don't do anything.
 
-To Check for moves for specific card(get_Moves)
+To Check for moves for specific card(get_Moves) potentially to get all possible moves
   -iterarte through each game stack
   -use the size of the array to get the last item
-  -check the last item is +1 greater than target card
+  -check the last item is +1 greater than moving cards
+  -also check that the card is of the opposite colour
   -add to get moves array
 
 
