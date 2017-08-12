@@ -102,13 +102,13 @@ public class GameLogicTest {
     public void testIsValidMove(){
         assertEquals(true, game.isValidMove(game.getCard(2,2),game.getCard(1,1)));
     }
-//    @Test
-//    public void testCanGetPotentialMoves(){
-//
-//        assertEquals(true,game.getMoves(2,2).containsKey(1));
-//        assertEquals(true,game.getMoves(2,2).containsValue(1));
-//
-//    }
+    @Test
+    public void testCanGetPotentialMoves(){
+        System.out.println(game.getMoves(2,2));
+        assertEquals(true,game.getMoves(2,2).containsKey(1));
+        assertEquals(true,game.getMoves(2,2).containsValue(1));
+
+    }
 
 
 

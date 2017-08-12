@@ -67,24 +67,25 @@ public class GameLogic {
                     if(moveColour != targetColour){
                         return true;
                     }
-                    else {
-                        System.out.println("Colours are not opposite");
-                    }
+
                 }
-                else{
-                    System.out.println("Not correct card values");
-                }
-            }
-            else{
-                System.out.println("Not Revealed");
+
             }
 
         return false;
     }
 
-//    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
-//        Card card = gameStacks.get();
-//    }
+    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
+        HashMap<Integer,Integer> moves = new HashMap<>();
+        Card moveCard = getCard(stack, stackItem);
+        for(int i =0; i < 7; i++){
+            int stackSize = gameStacks.get(i).size() - 1;
+            if(i != stack && isValidMove(moveCard, getCard(i, stackSize) )){
+                moves.put(i,stackSize);
+            }
+        }
+        return moves;
+    }
 
 
 
