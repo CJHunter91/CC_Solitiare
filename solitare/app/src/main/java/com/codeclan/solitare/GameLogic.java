@@ -1,6 +1,7 @@
 package com.codeclan.solitare;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by user on 11/08/2017.
@@ -30,12 +31,30 @@ public class GameLogic {
         buildAceStack();
     }
 
+    public void move(int stack, int stackItem, int targetStack){
+        ArrayList<Card> temp = new ArrayList<>();
+        for(int i = this.gameStacks.get(stack).size()-1; i >= stackItem; i--){
+            temp.add(getCard(stack, i));
+            this.gameStacks.get(stack).remove(i);
+        }
+        System.out.println(temp);
+//        Collections.reverse(temp);
+        for(int j = temp.size()-1; j >= 0; j--){
+            this.gameStacks.get(targetStack).add(temp.get(j));
+
+        }
+    }
+
     public ArrayList<ArrayList<Card>> getGameStacks(){
         return gameStacks;
     }
 
     public ArrayList<ArrayList<Card>> getAceStacks(){
         return aceStacks;
+    }
+
+    public Card getCard(int stack, int stackItem){
+        return gameStacks.get(stack).get(stackItem);
     }
 
 

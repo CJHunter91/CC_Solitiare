@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * Created by user on 11/08/2017.
@@ -61,6 +62,34 @@ public class GameLogicTest {
         game.newGame();
         stacks.get(2).get(1).reveal();
         assertEquals(true, stacks.get(2).get(1).isRevealed());
+    }
+
+    @Test
+    public void canGetCard(){
+        game.newGame();
+        assertEquals(stacks.get(2).get(1), game.getCard(2,1));
+    }
+
+    @Test
+    public void testCanMoveCard(){
+        game.newGame();
+        Card card = game.getCard(2,1);
+//        System.out.println(stacks.get(2)+"move");
+//        System.out.println(stacks.get(1)+"Target");
+        game.move(2,1,1);
+//        System.out.println(stacks.get(2)+"move");
+//        System.out.println(stacks.get(1)+"Target");
+        assertEquals(game.getCard(1,2),card);
+        assertEquals(1,stacks.get(2).size());
+    }
+
+    @Test
+    public void testCanMoveCardLarge(){
+        game.newGame();
+        Card card = game.getCard(6,0);
+        game.move(6,0,0);
+        assertEquals(game.getCard(0,1), card);
+        assertEquals(8,stacks.get(0).size());
     }
 
 
