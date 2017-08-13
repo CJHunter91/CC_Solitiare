@@ -31,8 +31,8 @@ public class GameLogic {
         return gameStacks.get(stack).get(stackItem);
     }
 
-    public Deck getDeck() {
-        return this.deck;
+    public ArrayList<Card> getRemainingDeck() {
+        return this.deck.getDeck();
     }
 
     public void newGame(){

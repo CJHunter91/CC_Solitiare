@@ -16,11 +16,11 @@ import static org.junit.Assert.assertSame;
 public class GameLogicTest {
     GameLogic game;
     ArrayList<ArrayList<Card>> stacks;
-    Deck deck;
+    ArrayList<Card> deck;
     @Before
     public void before(){
         game = new GameLogic();
-        deck = game.getDeck();
+        deck = game.getRemainingDeck();
         stacks = game.getGameStacks();
         game.newGame();
         game.getCard(1,1).setRank("10");
@@ -113,9 +113,13 @@ public class GameLogicTest {
     }
 
     @Test
-    public void testCanDrawFromDeckToPile(){
-        Card card = deck.g
-    }
+    public void 
+
+//    @Test
+//    public void testCanDrawFromDeckToPile(){
+//        Card card = deck
+//
+//    }
 
 
 
