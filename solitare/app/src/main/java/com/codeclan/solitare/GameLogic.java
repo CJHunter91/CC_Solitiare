@@ -47,6 +47,7 @@ public class GameLogic {
     }
 
     public void newGame(){
+        pile.clear();
         aceStacks.clear();
         gameStacks.clear();
         deck = new Deck();
@@ -56,6 +57,11 @@ public class GameLogic {
     }
 
     public void deckDraw(){
+        if(getRemainingDeck().size() <= 0){
+            //create setter for remaining deck
+            //update remaining deck to pile.reverse
+            //clear pile
+        }
         Card drawCard = getRemainingDeck().get(getRemainingDeck().size() -1);
         getRemainingDeck().remove(getRemainingDeck().size() -1);
         this.pile.add(drawCard);

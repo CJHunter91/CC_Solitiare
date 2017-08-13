@@ -70,4 +70,12 @@ public class DeckTest {
         assertEquals("R",deck.getSuitColour(card));
         assertEquals("B", deck.getSuitColour(card2));
     }
+
+    @Test
+    public void canSetDeck(){
+        ArrayList<Card> newAr = new ArrayList<>();
+        newAr.add(card);
+        deck.setDeck(newAr);
+        assertEquals(card, newAr.get(0));
+    }
 }
