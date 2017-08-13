@@ -60,6 +60,12 @@ public class DeckTest {
     }
 
     @Test
+    public void drawCardTestSize(){
+        deck.draw();
+        assertEquals(51, deck.getDeck().size());
+    }
+
+    @Test
     public void canCheckSuitColour(){
         assertEquals("R",deck.getSuitColour(card));
         assertEquals("B", deck.getSuitColour(card2));

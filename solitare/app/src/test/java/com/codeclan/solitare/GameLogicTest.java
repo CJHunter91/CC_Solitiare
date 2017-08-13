@@ -113,7 +113,9 @@ public class GameLogicTest {
     }
 
     @Test
-    public void 
+    public void remainingDeckIsCorrectSize(){
+        assertEquals(24, deck.size());
+    }
 
 //    @Test
 //    public void testCanDrawFromDeckToPile(){
