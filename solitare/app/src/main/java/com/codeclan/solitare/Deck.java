@@ -64,6 +64,9 @@ public class Deck {
         return deck;
     }
 
+    public void setDeck(ArrayList<Card> deck2) {
+        this.deck = deck2;
+    }
 
     public int getCardValue(Card card) {
         return this.cardValues.get(card.getRank());
@@ -104,4 +107,6 @@ public class Deck {
         }
         return s;
     }
+
+
 }

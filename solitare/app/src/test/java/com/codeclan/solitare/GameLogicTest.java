@@ -148,10 +148,10 @@ public class GameLogicTest {
         for(int i = 0; i <= 24; i++){
             game.deckDraw();
         }
-        Card resetCard = deck.get(deck.size()-1);
+        Card resetCard = game.getRemainingDeck().get(game.getRemainingDeck().size()-1);
         assertEquals(card, resetCard);
-        assertEquals(0, game.getPile());
-        assertEquals(24,deck.size());
+        assertEquals(0, game.getPile().size());
+        assertEquals(24,game.getRemainingDeck().size());
     }
 
 

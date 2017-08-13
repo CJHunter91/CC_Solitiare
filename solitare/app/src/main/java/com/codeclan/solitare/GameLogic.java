@@ -33,6 +33,10 @@ public class GameLogic {
         return gameStacks.get(stack).get(stackItem);
     }
 
+    public Deck getDeck(){
+        return this.deck;
+    }
+
     public ArrayList<Card> getRemainingDeck() {
         return this.deck.getDeck();
     }
@@ -58,13 +62,15 @@ public class GameLogic {
 
     public void deckDraw(){
         if(getRemainingDeck().size() <= 0){
-            //create setter for remaining deck
-            //update remaining deck to pile.reverse
-            //clear pile
+            this.deck.setDeck(new ArrayList<>(pile));
+            Collections.reverse(getRemainingDeck());
+            pile.clear();
         }
-        Card drawCard = getRemainingDeck().get(getRemainingDeck().size() -1);
-        getRemainingDeck().remove(getRemainingDeck().size() -1);
-        this.pile.add(drawCard);
+        else {
+            Card drawCard = getRemainingDeck().get(getRemainingDeck().size() - 1);
+            getRemainingDeck().remove(getRemainingDeck().size() - 1);
+            this.pile.add(drawCard);
+        }
     }
 
     public void move(int stack, int stackItem, int targetStack){
