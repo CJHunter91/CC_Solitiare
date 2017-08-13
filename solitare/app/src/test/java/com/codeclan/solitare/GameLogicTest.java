@@ -20,9 +20,9 @@ public class GameLogicTest {
     @Before
     public void before(){
         game = new GameLogic();
+        game.newGame();
         deck = game.getRemainingDeck();
         stacks = game.getGameStacks();
-        game.newGame();
         game.getCard(1,1).setRank("10");
         game.getCard(1,1).setSuit("D");
         game.getCard(2,2).setRank("9");
