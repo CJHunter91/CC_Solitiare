@@ -134,6 +134,26 @@ public class GameLogicTest {
         assertEquals(card, game.getPileCard());
     }
 
+    @Test
+    public void testCanDrawAllCards(){
+        for(int i = 0; i < 24; i++){
+            game.deckDraw();
+        }
+        assertEquals(0,deck.size());
+    }
+
+    @Test
+    public void testCanDrawAllCardsThenResetPile(){
+        Card card = deck.get(deck.size()-1);
+        for(int i = 0; i <= 24; i++){
+            game.deckDraw();
+        }
+        Card resetCard = deck.get(deck.size()-1);
+        assertEquals(card, resetCard);
+        assertEquals(0, game.getPile());
+        assertEquals(24,deck.size());
+    }
+
 
 
 

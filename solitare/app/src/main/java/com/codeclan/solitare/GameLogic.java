@@ -42,6 +42,9 @@ public class GameLogic {
         return card;
     }
 
+    public ArrayList<Card> getPile() {
+        return pile;
+    }
 
     public void newGame(){
         aceStacks.clear();
@@ -130,7 +133,5 @@ public class GameLogic {
             count++;
         }
     }
-
-
 
 }
