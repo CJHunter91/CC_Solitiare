@@ -117,11 +117,13 @@ public class GameLogicTest {
         assertEquals(24, deck.size());
     }
 
-//    @Test
-//    public void testCanDrawFromDeckToPile(){
-//        Card card = deck
-//
-//    }
+    @Test
+    public void testCanDrawFromDeckToPile(){
+        Card card = deck.get(deck.size()-1);
+        game.gameDraw();
+        assertEquals(card, game.topPileCard());
+
+    }
 
 
 
