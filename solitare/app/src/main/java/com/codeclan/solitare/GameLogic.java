@@ -12,11 +12,13 @@ public class GameLogic {
     private ArrayList<ArrayList<Card>> aceStacks;
     private ArrayList<ArrayList<Card>> gameStacks;
     private Deck deck;
+    private ArrayList<Card> pile;
 
     public GameLogic(){
         this.deck = new Deck();
         this.gameStacks = new ArrayList<>();
         this.aceStacks = new ArrayList<>();
+        this.pile = new ArrayList<>();
     }
 
     public ArrayList<ArrayList<Card>> getGameStacks(){
@@ -35,6 +37,12 @@ public class GameLogic {
         return this.deck.getDeck();
     }
 
+    public Card getPileCard(){
+        Card card = this.pile.get(pile.size()-1);
+        return card;
+    }
+
+
     public void newGame(){
         aceStacks.clear();
         gameStacks.clear();
@@ -42,6 +50,12 @@ public class GameLogic {
 
         buildGameStack();
         buildAceStack();
+    }
+
+    public void deckDraw(){
+        Card drawCard = getRemainingDeck().get(getRemainingDeck().size() -1);
+        getRemainingDeck().remove(getRemainingDeck().size() -1);
+        this.pile.add(drawCard);
     }
 
     public void move(int stack, int stackItem, int targetStack){

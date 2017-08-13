@@ -120,10 +120,12 @@ public class GameLogicTest {
     @Test
     public void testCanDrawFromDeckToPile(){
         Card card = deck.get(deck.size()-1);
-        game.gameDraw();
-        assertEquals(card, game.topPileCard());
+        game.deckDraw();
+        assertEquals(card, game.getPileCard());
 
     }
+
+    
 
 
 
