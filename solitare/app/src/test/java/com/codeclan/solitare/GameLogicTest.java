@@ -125,7 +125,14 @@ public class GameLogicTest {
 
     }
 
-    
+    @Test
+    public void testCanDrawMultipleCards(){
+        Card card = deck.get(deck.size()-3);
+        game.deckDraw();
+        game.deckDraw();
+        game.deckDraw();
+        assertEquals(card, game.getPileCard());
+    }
 
 
 
