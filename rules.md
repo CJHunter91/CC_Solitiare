@@ -30,24 +30,30 @@ Move a card on click
   -remove the cards from the array taken from 
   -add the cards to the end of the target array
 
-Click on ace spot(moveToAce)
-  -check the size of the array for the specific suit
-  -check if there is a value +1 greater available
-  -use similar logic(as move a card) to move target card to ace stack
-  -if size is >= 13 don't do anything.
+double tap card(moveToAce)
+  -check card is +1 greater than correct suit index of aceStack
+  -move card to that stack and remove from game stack or pile
 
 To Check for moves for specific card(get_Moves) potentially to get all possible moves
   -iterarte through each game stack
   -use the size of the array to get the last item
   -check the last item is +1 greater than moving cards  
   -also check that the card is of the opposite colour
-  -add to get moves array
+  -add to get moves Hash
 
 
 To get the next card in the deck pile
-  -when clicked add one to the counter
-  -update by using the index of the deck
-  -loop back to 0 when >than size of the array
+  -create pile array
+  -remove last card from deck array
+  -add to pile
+  -remove from deck
+  -when the last card from the deck is put on the pile and on next click
+    deck = pile.reverse then clear pile
+
+Move card from pile(moveFromPile)
+  -check is valid move
+  -remove from pile
+  -add to appropriate stack
 
 Check the game is won when size of all ace stacks are == 13
 

@@ -16,9 +16,11 @@ import static org.junit.Assert.assertSame;
 public class GameLogicTest {
     GameLogic game;
     ArrayList<ArrayList<Card>> stacks;
+    Deck deck;
     @Before
     public void before(){
         game = new GameLogic();
+        deck = game.getDeck();
         stacks = game.getGameStacks();
         game.newGame();
         game.getCard(1,1).setRank("10");
@@ -108,6 +110,11 @@ public class GameLogicTest {
         assertEquals(true,game.getMoves(2,2).containsKey(1));
         assertEquals(true,game.getMoves(2,2).containsValue(1));
 
+    }
+
+    @Test
+    public void testCanDrawFromDeckToPile(){
+        Card card = deck.g
     }
 
 

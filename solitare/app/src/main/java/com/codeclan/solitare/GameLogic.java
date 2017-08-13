@@ -17,7 +17,22 @@ public class GameLogic {
         this.deck = new Deck();
         this.gameStacks = new ArrayList<>();
         this.aceStacks = new ArrayList<>();
-        this.deck = new Deck();
+    }
+
+    public ArrayList<ArrayList<Card>> getGameStacks(){
+        return gameStacks;
+    }
+
+    public ArrayList<ArrayList<Card>> getAceStacks(){
+        return aceStacks;
+    }
+
+    public Card getCard(int stack, int stackItem){
+        return gameStacks.get(stack).get(stackItem);
+    }
+
+    public Deck getDeck() {
+        return this.deck;
     }
 
     public void newGame(){
@@ -44,33 +59,21 @@ public class GameLogic {
         }
     }
 
-    public ArrayList<ArrayList<Card>> getGameStacks(){
-        return gameStacks;
-    }
-
-    public ArrayList<ArrayList<Card>> getAceStacks(){
-        return aceStacks;
-    }
-
-    public Card getCard(int stack, int stackItem){
-        return gameStacks.get(stack).get(stackItem);
-    }
-
     public boolean isValidMove(Card moveCard, Card targetCard) {
         int moveValue = deck.getCardValue(moveCard);
         int targetValue = deck.getCardValue(targetCard);
         String moveColour = deck.getSuitColour(moveCard);
         String targetColour = deck.getSuitColour(targetCard);
 
-            if(moveCard.isRevealed() && targetCard.isRevealed()){
-                if(targetValue == (moveValue+1)){
-                    if(moveColour != targetColour){
-                        return true;
-                    }
-
+        if(moveCard.isRevealed() && targetCard.isRevealed()){
+            if(targetValue == (moveValue+1)){
+                if(moveColour != targetColour){
+                    return true;
                 }
 
             }
+
+        }
 
         return false;
     }
@@ -113,6 +116,7 @@ public class GameLogic {
             count++;
         }
     }
+
 
 
 }
