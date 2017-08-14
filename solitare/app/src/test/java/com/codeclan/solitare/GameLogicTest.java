@@ -98,7 +98,7 @@ public class GameLogicTest {
         Card card = game.getCard(2,1);
 //        System.out.println(stacks.get(2)+"move");
 //        System.out.println(stacks.get(1)+"Targe
-        game.move(2,1,1);
+        game.move(card,1);
 //        System.out.println(stacks.get(2)+"move");
 //        System.out.println(stacks.get(1)+"Target");
         assertEquals(game.getCard(1,2),card);
