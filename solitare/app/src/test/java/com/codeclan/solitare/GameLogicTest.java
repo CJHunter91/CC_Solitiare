@@ -301,6 +301,17 @@ public class GameLogicTest {
     }
 
 
+    @Test void makeValidMove(){
+        game.newGame();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
+        Card card1 = game.getCard(1,1);
+        Card card2 = game.getCard(2,2);
+        game.makeValidMove(card2, card1);
+        assertEquals(card2, game.getCard(1,2));
+    }
 
 
 
