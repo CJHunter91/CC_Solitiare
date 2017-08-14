@@ -106,6 +106,13 @@ public class GameLogic {
         }
     }
 
+    public void move(int targetStack){
+        Card moveCard = getPileCard();
+        this.gameStacks.get(targetStack).add(moveCard);
+        this.pile.remove(this.pile.size()-1);
+
+    }
+
     public boolean isValidMove(Card moveCard, Card targetCard) {
         int moveValue = deck.getCardValue(moveCard);
         int targetValue = deck.getCardValue(targetCard);
