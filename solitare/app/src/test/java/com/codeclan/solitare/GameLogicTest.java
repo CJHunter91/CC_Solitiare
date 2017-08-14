@@ -190,6 +190,17 @@ public class GameLogicTest {
         assertEquals(card, game.getCard(1,2));
     }
 
+    @Test
+    public void testCanMoveToAceStack(){
+        game.newGame();
+        game.getCard(0,0).setRank("A");
+        Card card = game.getCard(0,0);
+        game.moveToAce(game.getCard(0,0));
+        assertEquals(card ,game.getAceStacks().get(0).get(0));
+
+    }
+
+
 
 
 
