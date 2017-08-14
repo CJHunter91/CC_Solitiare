@@ -131,9 +131,8 @@ public class GameLogicTest {
         game.getCard(1,1).setSuit("D");
         game.getCard(2,2).setRank("9");
         game.getCard(2,2).setSuit("C");
-        System.out.println(game.getMoves(2,2));
-        assertEquals(true,game.getMoves(2,2).containsKey(1));
-        assertEquals(true,game.getMoves(2,2).containsValue(1));
+        assertEquals(true,game.getMoves(game.getCard(2,2)).containsKey(1));
+        assertEquals(true,game.getMoves(game.getCard(2,2)).containsValue(1));
 
     }
 
@@ -227,8 +226,8 @@ public class GameLogicTest {
         game.getCard(2,2).setSuit("C");
         game.getPileCard().setRank("9");
         game.getPileCard().setSuit("C");
-        assertEquals(true,game.getMoves(-1,-1).containsKey(1));
-        assertEquals(true,game.getMoves(-1,-1).containsValue(1));
+        assertEquals(true,game.getMoves(game.getCard(-1,0)).containsKey(1));
+        assertEquals(true,game.getMoves(game.getCard(-1,0)).containsValue(1));
 
     }
 

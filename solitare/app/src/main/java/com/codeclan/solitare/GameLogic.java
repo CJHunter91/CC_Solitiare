@@ -76,11 +76,14 @@ public class GameLogic {
         return card;
     }
 
-    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
+    public HashMap<Integer, Integer> getMoves(Card card){
         HashMap<Integer,Integer> moves = new HashMap<>();
         Card moveCard = null;
-        if(stack == -1 && stackItem == -1){
-            moveCard = getPileCard();
+        ArrayList<Integer> find = findCard(card);
+        int stack = find.get(0);
+        int stackItem = find.get(1);
+        if(stack == -1){
+            moveCard = this.pile.get(stackItem);
         }
         else {
             moveCard = getCard(stack, stackItem);
