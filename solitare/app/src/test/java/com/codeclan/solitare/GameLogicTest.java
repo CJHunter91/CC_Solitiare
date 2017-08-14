@@ -110,7 +110,7 @@ public class GameLogicTest {
         game.newGame();
         stacks = game.getGameStacks();
         Card card = game.getCard(6,0);
-        game.move(6,0,0);
+        game.move(card ,0);
         assertEquals(game.getCard(0,1), card);
         assertEquals(8,stacks.get(0).size());
     }

@@ -154,10 +154,14 @@ public class GameLogic {
         }
     }
 
-    public void move(int stack, int stackItem, int targetStack){
+    public void move(Card card, int targetStack){
         ArrayList<Card> temp = new ArrayList<>();
         //iterate through the stack to add each card to temp in prep for move
         //removing each card from the moving stack
+        ArrayList<Integer> find = findCard(card);
+        int stack = find.get(0);
+        int stackItem = find.get(1);
+
         for(int i = this.gameStacks.get(stack).size()-1; i >= stackItem; i--) {
             temp.add(getCard(stack, i));
             this.gameStacks.get(stack).remove(i);
