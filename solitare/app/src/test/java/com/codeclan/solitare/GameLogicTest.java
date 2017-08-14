@@ -335,6 +335,19 @@ public class GameLogicTest {
         assertEquals(card2, game.getCard(1,4));
     }
 
+    @Test
+    public void canMoveKingToEmptyStack(){
+        game.newGame();
+        game.removeCard(1,1);
+        game.removeCard(1,0);
+        game.getCard(2,2).setRank("K");
+        game.getCard(2,2).setSuit("C");
+        game.getCard(2,2).reveal();
+        Card card = game.getCard(2,2);
+        game.isValidMove(game.getCard(2,2), 1);
+        assertEquals(card, game.getCard(1,0));
+    }
+
 
 
 }
