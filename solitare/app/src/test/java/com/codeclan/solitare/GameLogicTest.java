@@ -154,6 +154,14 @@ public class GameLogicTest {
         assertEquals(24,game.getRemainingDeck().size());
     }
 
+//    @Test
+//    public void testCanGetMovesForPileCard(){
+//        System.out.println(game.getMoves(-1,-1));
+//        assertEquals(true,game.getMoves(2,2).containsKey(1));
+//        assertEquals(true,game.getMoves(2,2).containsValue(1));
+//
+//    }
+
 
 
 

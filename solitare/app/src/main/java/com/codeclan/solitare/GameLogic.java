@@ -109,7 +109,13 @@ public class GameLogic {
 
     public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
         HashMap<Integer,Integer> moves = new HashMap<>();
-        Card moveCard = getCard(stack, stackItem);
+        Card moveCard = null;
+        if(stack == -1 && stackItem == -1){
+            moveCard = getPileCard();
+        }
+        else {
+            moveCard = getCard(stack, stackItem);
+        }
         for(int i =0; i < 7; i++){
             int stackSize = gameStacks.get(i).size() - 1;
             if(i != stack && isValidMove(moveCard, getCard(i, stackSize) )){
