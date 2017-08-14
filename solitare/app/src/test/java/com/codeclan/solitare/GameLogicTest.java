@@ -156,6 +156,7 @@ public class GameLogicTest {
 
     @Test
     public void testCanFindCard(){
+        game.newGame();
         HashMap<Integer,Integer> find = new HashMap<>();
         find.put(1,1);
         assertEquals(find, game.findCard(game.getCard(1,1)));

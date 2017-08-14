@@ -33,6 +33,23 @@ public class GameLogic {
         return gameStacks.get(stack).get(stackItem);
     }
 
+    public HashMap<Integer,Integer> findCard(Card card) {
+        HashMap<Integer, Integer> find = new HashMap<>();
+        String findRank = card.getRank();
+        String findSuit = card.getSuit();
+
+        for(ArrayList<Card> stack: this.gameStacks){
+            for(Card eachCard: stack){
+                if(eachCard.getRank().equals(findRank) && eachCard.getSuit().equals(findSuit)){
+                    find.put(this.gameStacks.indexOf(stack), stack.indexOf(eachCard));
+                }
+            }
+        }
+
+        return find;
+
+    }
+
     public Deck getDeck(){
         return this.deck;
     }
@@ -151,5 +168,6 @@ public class GameLogic {
             count++;
         }
     }
+
 
 }
