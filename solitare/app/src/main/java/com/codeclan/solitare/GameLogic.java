@@ -86,6 +86,7 @@ public class GameLogic {
         else {
             Card drawCard = getRemainingDeck().get(getRemainingDeck().size() - 1);
             getRemainingDeck().remove(getRemainingDeck().size() - 1);
+            drawCard.reveal();
             this.pile.add(drawCard);
         }
     }
