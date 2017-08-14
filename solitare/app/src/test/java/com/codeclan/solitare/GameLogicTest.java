@@ -154,21 +154,24 @@ public class GameLogicTest {
         assertEquals(24,game.getRemainingDeck().size());
     }
 
-//    @Test
-//    public void testCanFindCardInGame(){
-//        game.newGame();
-//        HashMap<Integer,Integer> find = new HashMap<>();
-//        find.put(1,1);
-//        assertEquals(find, game.findCard(game.getCard(1,1)));
-//    }
+    @Test
+    public void testCanFindCardInGame(){
+        game.newGame();
+        ArrayList<Integer> find = new ArrayList<>();
+        find.add(1);
+        find.add(1);
+        assertEquals(find, game.findCard(game.getCard(1,1)));
+    }
 
-//    @Test
-//    public void testCanFindCardInDeck(){
-//        game.newGame();
-//        HashMap<Integer,Integer> find = new HashMap<>();
-//        find.put(1,1);
-//        assertEquals(find, game.findCard(game.getCard(1,1)));
-//    }
+    @Test
+    public void testCanFindCardInPile(){
+        game.newGame();
+        game.deckDraw();
+        ArrayList<Integer> find = new ArrayList<>();
+        find.add(-1);
+        find.add(0);
+        assertEquals(find, game.findCard(game.getCard(-1,0)));
+    }
 
     @Test
     public void testCanGetMovesForPileCard(){

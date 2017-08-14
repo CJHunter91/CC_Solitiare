@@ -30,7 +30,12 @@ public class GameLogic {
     }
 
     public Card getCard(int stack, int stackItem){
+        if(stack == -1){
+            return this.pile.get(stackItem);
+        }
+
         return gameStacks.get(stack).get(stackItem);
+
     }
 
     public Card getAceCard(int stack, int stackItem){
