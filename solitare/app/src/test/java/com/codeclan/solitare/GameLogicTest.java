@@ -154,13 +154,13 @@ public class GameLogicTest {
         assertEquals(24,game.getRemainingDeck().size());
     }
 
-    @Test
-    public void testCanFindCardInGame(){
-        game.newGame();
-        HashMap<Integer,Integer> find = new HashMap<>();
-        find.put(1,1);
-        assertEquals(find, game.findCard(game.getCard(1,1)));
-    }
+//    @Test
+//    public void testCanFindCardInGame(){
+//        game.newGame();
+//        HashMap<Integer,Integer> find = new HashMap<>();
+//        find.put(1,1);
+//        assertEquals(find, game.findCard(game.getCard(1,1)));
+//    }
 
 //    @Test
 //    public void testCanFindCardInDeck(){
@@ -178,6 +178,16 @@ public class GameLogicTest {
         assertEquals(true,game.getMoves(-1,-1).containsKey(1));
         assertEquals(true,game.getMoves(-1,-1).containsValue(1));
 
+    }
+
+    @Test
+    public void testCanMovePileCard(){
+        game.deckDraw();
+        game.getPileCard().setRank("9");
+        game.getPileCard().setSuit("C");
+        Card card = game.getPileCard();
+        game.move(1);
+        assertEquals(card, game.getCard(1,2));
     }
 
 
