@@ -21,6 +21,31 @@ public class GameLogic {
         this.pile = new ArrayList<>();
     }
 
+    private void  buildAceStack(){
+        for(int i=0; i <4; i++){
+            aceStacks.add(new ArrayList<Card>());
+        }
+    }
+
+    private void buildGameStack(){
+
+        int count = 0;
+
+        for(int stack=0; stack < 7; stack++){
+            gameStacks.add(new ArrayList<Card>());
+            for(int item=0; item <= count; item++){
+                Card card = deck.draw();
+                //reveal the last card
+                if(item == count) {
+                    card.reveal();
+                }
+                gameStacks.get(stack).add(card);
+            }
+            //used to add extra card next iteration
+            count++;
+        }
+    }
+
     public ArrayList<ArrayList<Card>> getGameStacks(){
         return gameStacks;
     }
@@ -42,6 +67,33 @@ public class GameLogic {
         return aceStacks.get(stack).get(stackItem);
     }
 
+    public ArrayList<Card> getRemainingDeck() {
+        return this.deck.getDeck();
+    }
+
+    public Card getPileCard(){
+        Card card = this.pile.get(pile.size()-1);
+        return card;
+    }
+
+    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
+        HashMap<Integer,Integer> moves = new HashMap<>();
+        Card moveCard = null;
+        if(stack == -1 && stackItem == -1){
+            moveCard = getPileCard();
+        }
+        else {
+            moveCard = getCard(stack, stackItem);
+        }
+        for(int i =0; i < 7; i++){
+            int stackSize = gameStacks.get(i).size() - 1;
+            if(i != stack && isValidMove(moveCard, getCard(i, stackSize) )){
+                moves.put(i,stackSize);
+            }
+        }
+        return moves;
+    }
+
     public void removeCard(int stack, int stackItem) {
         if(stack == -1){
             this.pile.remove(stackItem);
@@ -50,7 +102,6 @@ public class GameLogic {
             this.gameStacks.get(stack).remove(stackItem);
         }
     }
-
 
     public ArrayList<Integer> findCard(Card card) {
         ArrayList<Integer> find = new ArrayList<>();
@@ -76,15 +127,6 @@ public class GameLogic {
 
         return find;
 
-    }
-
-    public ArrayList<Card> getRemainingDeck() {
-        return this.deck.getDeck();
-    }
-
-    public Card getPileCard(){
-        Card card = this.pile.get(pile.size()-1);
-        return card;
     }
 
     public ArrayList<Card> getPile() {
@@ -144,6 +186,7 @@ public class GameLogic {
             if(stack.size() == 0 && card.getRank().equals("A")){
                 stack.add(card);
                 ArrayList<Integer> find = findCard(card);
+                System.out.println(find);
                 removeCard(find.get(0), find.get(1));
                 break;
             }
@@ -180,49 +223,9 @@ public class GameLogic {
         return false;
     }
 
-    public HashMap<Integer, Integer> getMoves(int stack, int stackItem){
-        HashMap<Integer,Integer> moves = new HashMap<>();
-        Card moveCard = null;
-        if(stack == -1 && stackItem == -1){
-            moveCard = getPileCard();
-        }
-        else {
-            moveCard = getCard(stack, stackItem);
-        }
-        for(int i =0; i < 7; i++){
-            int stackSize = gameStacks.get(i).size() - 1;
-            if(i != stack && isValidMove(moveCard, getCard(i, stackSize) )){
-                moves.put(i,stackSize);
-            }
-        }
-        return moves;
-    }
 
 
 
-    private void  buildAceStack(){
-        for(int i=0; i <4; i++){
-            aceStacks.add(new ArrayList<Card>());
-        }
-    }
 
-    private void buildGameStack(){
-
-        int count = 0;
-
-        for(int stack=0; stack < 7; stack++){
-            gameStacks.add(new ArrayList<Card>());
-            for(int item=0; item <= count; item++){
-                Card card = deck.draw();
-                //reveal the last card
-                if(item == count) {
-                    card.reveal();
-                }
-                gameStacks.get(stack).add(card);
-            }
-            //used to add extra card next iteration
-            count++;
-        }
-    }
 
 }

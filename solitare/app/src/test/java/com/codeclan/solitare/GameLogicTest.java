@@ -217,16 +217,35 @@ public class GameLogicTest {
 
         assertEquals(1, game.getPile().size());
     }
-//
-//    @Test
-//    public void testMoveToAceStackRemovesGameStackCard(){
-//        game.newGame();
-//        game.getCard(0,0).setRank("A");
-//        Card card = game.getCard(0,0);
-//        game.moveToAce(game.getCard(0,0));
-//        assertEquals(card ,game.getAceStacks().get(0).get(0));
-//        assertEquals(0, game.getGameStacks().get(0).size());
-//    }
+
+    @Test
+    public void testCanRemoveCardFromPile2(){
+        this.game.deckDraw();
+        game.removeCard(-1,0);
+
+        assertEquals(0, game.getPile().size());
+    }
+
+    @Test
+    public void testMoveToAceStackRemovesGameStackCard(){
+        game.newGame();
+        game.getCard(0,0).setRank("A");
+        Card card = game.getCard(0,0);
+        game.moveToAce(game.getCard(0,0));
+        assertEquals(card ,game.getAceStacks().get(0).get(0));
+        assertEquals(0, game.getGameStacks().get(0).size());
+    }
+
+    @Test
+    public void testMoveToAceStackFromPile(){
+        //two copies of the card affecting test
+        game.newGame();
+        game.deckDraw();
+        game.getCard(-1,0).setRank("A");
+        Card card = game.getCard(-1,0);
+        game.moveToAce(game.getCard(-1,0));
+        assertEquals(card ,game.getAceStacks().get(0).get(0));
+    }
 
 
 
