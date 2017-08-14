@@ -91,9 +91,13 @@ public class GameLogicTest {
     public void testCanMoveCard(){
         game.newGame();
         stacks = game.getGameStacks();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
         Card card = game.getCard(2,1);
 //        System.out.println(stacks.get(2)+"move");
-//        System.out.println(stacks.get(1)+"Target");
+//        System.out.println(stacks.get(1)+"Targe
         game.move(2,1,1);
 //        System.out.println(stacks.get(2)+"move");
 //        System.out.println(stacks.get(1)+"Target");
@@ -293,6 +297,7 @@ public class GameLogicTest {
         Card card = game.getCard(-1,0);
         game.moveToAce(game.getCard(-1,0));
         assertEquals(card ,game.getAceStacks().get(0).get(0));
+        assertEquals(0, game.getPile().size());
     }
 
 

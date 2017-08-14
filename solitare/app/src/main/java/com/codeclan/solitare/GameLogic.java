@@ -105,12 +105,9 @@ public class GameLogic {
 
     public ArrayList<Integer> findCard(Card card) {
         ArrayList<Integer> find = new ArrayList<>();
-        String findRank = card.getRank();
-        String findSuit = card.getSuit();
-
-        for(ArrayList<Card> stack: this.gameStacks){
-            for(Card eachCard: stack){
-                if(eachCard.getRank().equals(findRank) && eachCard.getSuit().equals(findSuit)){
+        for(ArrayList<Card> stack: this.gameStacks) {
+            for (Card eachCard : stack) {
+                if (card == eachCard) {
                     find.add(this.gameStacks.indexOf(stack));
                     find.add(stack.indexOf(eachCard));
                 }
@@ -118,7 +115,7 @@ public class GameLogic {
         }
         if(find.size() == 0){
             for(Card eachCard: this.pile){
-                if(eachCard.getRank().equals(findRank) && eachCard.getSuit().equals(findSuit)){
+                if(card == eachCard){
                     find.add(-1);
                     find.add(this.pile.indexOf(eachCard));
                 }
