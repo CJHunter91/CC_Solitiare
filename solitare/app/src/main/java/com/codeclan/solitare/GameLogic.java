@@ -65,6 +65,14 @@ public class GameLogic {
                 }
             }
         }
+        if(find.size() == 0){
+            for(Card eachCard: this.pile){
+                if(eachCard.getRank().equals(findRank) && eachCard.getSuit().equals(findSuit)){
+                    find.add(-1);
+                    find.add(this.pile.indexOf(eachCard));
+                }
+            }
+        }
 
         return find;
 
