@@ -197,7 +197,7 @@ public class GameLogicTest {
     public void testCanMoveToAceStack(){
         game.newGame();
         game.getCard(0,0).setRank("A");
-        Card card = game.getCard(0,0);
+        Card card =  game.getCard(0,0);
         game.moveToAce(game.getCard(0,0));
         assertEquals(card ,game.getAceStacks().get(0).get(0));
 
@@ -217,7 +217,7 @@ public class GameLogicTest {
 
         assertEquals(1, game.getPile().size());
     }
-
+//
 //    @Test
 //    public void testMoveToAceStackRemovesGameStackCard(){
 //        game.newGame();

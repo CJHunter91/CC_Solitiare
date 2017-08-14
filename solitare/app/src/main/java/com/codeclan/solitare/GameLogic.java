@@ -143,13 +143,18 @@ public class GameLogic {
             int cardValue =  this.deck.getCardValue(card);
             if(stack.size() == 0 && card.getRank().equals("A")){
                 stack.add(card);
-                findCard(card);
+                ArrayList<Integer> find = findCard(card);
+                removeCard(find.get(0), find.get(1));
+                break;
             }
             else if(stack.size() > 1 && stack.size() < 13){
                 Card lastInAceStack =  getAceCard(aceStacks.indexOf(stack),stack.size()-1);
                 if(this.deck.getCardValue(lastInAceStack) == cardValue - 1 &&
                         lastInAceStack.getSuit().equals(card.getSuit())){
                     stack.add(card);
+                    ArrayList<Integer> find = findCard(card);
+                    removeCard(find.get(0), find.get(1));
+                    break;
                 }
             }
 
