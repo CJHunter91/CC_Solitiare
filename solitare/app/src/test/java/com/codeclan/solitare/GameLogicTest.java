@@ -206,6 +206,15 @@ public class GameLogicTest {
         assertEquals(0, game.getGameStacks().get(0).size());
     }
 
+    @Test
+    public void testCanRemoveCardFromPile(){
+        this.game.deckDraw();
+        this.game.deckDraw();
+        game.removeCard(-1,0);
+
+        assertEquals(1, game.getPile().size());
+    }
+
 //    @Test
 //    public void testMoveToAceStackRemovesGameStackCard(){
 //        game.newGame();

@@ -41,7 +41,9 @@ public class GameLogic {
         if(stack == -1){
             this.pile.remove(stackItem);
         }
-        this.gameStacks.get(stack).remove(stackItem);
+        else {
+            this.gameStacks.get(stack).remove(stackItem);
+        }
     }
 
 
