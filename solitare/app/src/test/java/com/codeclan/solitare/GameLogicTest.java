@@ -301,7 +301,8 @@ public class GameLogicTest {
     }
 
 
-    @Test void makeValidMove(){
+    @Test
+    public void makeValidMove(){
         game.newGame();
         game.getCard(1,1).setRank("10");
         game.getCard(1,1).setSuit("D");
@@ -311,6 +312,28 @@ public class GameLogicTest {
         Card card2 = game.getCard(2,2);
         game.makeValidMove(card2, card1);
         assertEquals(card2, game.getCard(1,2));
+    }
+
+    @Test
+    public void makeValidMoveLarge(){
+        game.newGame();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("7");
+        game.getCard(2,2).setSuit("C");
+        game.getCard(2,1).setRank("8");
+        game.getCard(2,1).setSuit("D");
+        game.getCard(2,0).setRank("9");
+        game.getCard(2,0).setSuit("C");
+        game.getCard(2,0).reveal();
+        game.getCard(2,2).reveal();
+        game.getCard(2,1).reveal();
+        Card card1 = game.getCard(1,1);
+        Card card2 = game.getCard(2,2);
+        Card card3 = game.getCard(2,0);
+        game.makeValidMove(card3, card1);
+        assertEquals(card3, game.getCard(1,2));
+        assertEquals(card2, game.getCard(1,4));
     }
 
 

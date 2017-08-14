@@ -224,6 +224,12 @@ public class GameLogic {
         return false;
     }
 
+    public void makeValidMove(Card moveCard, Card targetCard){
+        if(isValidMove(moveCard,targetCard)){
+            move(moveCard, findCard(targetCard).get(1));
+        }
+    }
+
 
 
 
