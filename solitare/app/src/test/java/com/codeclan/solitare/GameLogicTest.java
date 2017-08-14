@@ -309,7 +309,7 @@ public class GameLogicTest {
         game.getCard(2,2).setSuit("C");
         Card card1 = game.getCard(1,1);
         Card card2 = game.getCard(2,2);
-        game.makeValidMove(card2, card1);
+        game.makeValidMove(card2, 1);
         assertEquals(card2, game.getCard(1,2));
     }
 
@@ -330,7 +330,7 @@ public class GameLogicTest {
         Card card1 = game.getCard(1,1);
         Card card2 = game.getCard(2,2);
         Card card3 = game.getCard(2,0);
-        game.makeValidMove(card3, card1);
+        game.makeValidMove(card3, 1);
         assertEquals(card3, game.getCard(1,2));
         assertEquals(card2, game.getCard(1,4));
     }
@@ -344,7 +344,7 @@ public class GameLogicTest {
         game.getCard(2,2).setSuit("C");
         game.getCard(2,2).reveal();
         Card card = game.getCard(2,2);
-        game.isValidMove(game.getCard(2,2), 1);
+        game.makeValidMove(game.getCard(2,2), 1);
         assertEquals(card, game.getCard(1,0));
     }
 

@@ -227,9 +227,17 @@ public class GameLogic {
         return false;
     }
 
-    public void makeValidMove(Card moveCard, Card targetCard){
-        if(isValidMove(moveCard,targetCard)){
-            move(moveCard, findCard(targetCard).get(1));
+    public void makeValidMove(Card moveCard, int targetStack){
+
+
+        if(this.gameStacks.get(targetStack).size() > 0){
+            Card targetCard = getCard(targetStack, this.gameStacks.get(targetStack).size()-1);
+            if(isValidMove(moveCard,targetCard)){
+                move(moveCard, targetStack);
+            }
+        }
+        else if(moveCard.getRank().equals("K")){
+            move(moveCard, targetStack);
         }
     }
 
