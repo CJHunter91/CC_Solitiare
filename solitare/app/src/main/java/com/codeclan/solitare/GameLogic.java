@@ -33,15 +33,21 @@ public class GameLogic {
         return gameStacks.get(stack).get(stackItem);
     }
 
-    public HashMap<Integer,Integer> findCard(Card card) {
-        HashMap<Integer, Integer> find = new HashMap<>();
+    public Card getAceCard(int stack, int stackItem){
+        return aceStacks.get(stack).get(stackItem);
+    }
+
+
+    public ArrayList<Integer> findCard(Card card) {
+        ArrayList<Integer> find = new ArrayList<>();
         String findRank = card.getRank();
         String findSuit = card.getSuit();
 
         for(ArrayList<Card> stack: this.gameStacks){
             for(Card eachCard: stack){
                 if(eachCard.getRank().equals(findRank) && eachCard.getSuit().equals(findSuit)){
-                    find.put(this.gameStacks.indexOf(stack), stack.indexOf(eachCard));
+                    find.add(this.gameStacks.indexOf(stack));
+                    find.add(stack.indexOf(eachCard));
                 }
             }
         }
@@ -107,6 +113,24 @@ public class GameLogic {
         this.gameStacks.get(targetStack).add(moveCard);
         this.pile.remove(this.pile.size()-1);
 
+    }
+
+    public void moveToAce(Card card){
+        //needs to remove the card if added
+        for(ArrayList<Card> stack : getAceStacks()){
+            int cardValue =  this.deck.getCardValue(card);
+            if(stack.size() == 0 && card.getRank().equals("A")){
+                stack.add(card);
+            }
+            else if(stack.size() > 1 && stack.size() < 13){
+                Card lastInAceStack =  getAceCard(aceStacks.indexOf(stack),stack.size()-1);
+                if(this.deck.getCardValue(lastInAceStack) == cardValue - 1 &&
+                        lastInAceStack.getSuit().equals(card.getSuit())){
+                    stack.add(card);
+                }
+            }
+
+        }
     }
 
     public boolean isValidMove(Card moveCard, Card targetCard) {
