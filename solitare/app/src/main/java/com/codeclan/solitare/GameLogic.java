@@ -37,6 +37,13 @@ public class GameLogic {
         return aceStacks.get(stack).get(stackItem);
     }
 
+    public void removeCard(int stack, int stackItem) {
+        if(stack == -1){
+            this.pile.remove(stackItem);
+        }
+        this.gameStacks.get(stack).remove(stackItem);
+    }
+
 
     public ArrayList<Integer> findCard(Card card) {
         ArrayList<Integer> find = new ArrayList<>();
@@ -121,6 +128,7 @@ public class GameLogic {
             int cardValue =  this.deck.getCardValue(card);
             if(stack.size() == 0 && card.getRank().equals("A")){
                 stack.add(card);
+                findCard(card);
             }
             else if(stack.size() > 1 && stack.size() < 13){
                 Card lastInAceStack =  getAceCard(aceStacks.indexOf(stack),stack.size()-1);
@@ -196,6 +204,5 @@ public class GameLogic {
             count++;
         }
     }
-
 
 }

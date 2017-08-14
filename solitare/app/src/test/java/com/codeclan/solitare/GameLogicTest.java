@@ -200,6 +200,22 @@ public class GameLogicTest {
 
     }
 
+    @Test
+    public void testCanRemoveCardFromGameStack(){
+        game.removeCard(0,0);
+        assertEquals(0, game.getGameStacks().get(0).size());
+    }
+
+//    @Test
+//    public void testMoveToAceStackRemovesGameStackCard(){
+//        game.newGame();
+//        game.getCard(0,0).setRank("A");
+//        Card card = game.getCard(0,0);
+//        game.moveToAce(game.getCard(0,0));
+//        assertEquals(card ,game.getAceStacks().get(0).get(0));
+//        assertEquals(0, game.getGameStacks().get(0).size());
+//    }
+
 
 
 
