@@ -20,19 +20,21 @@ public class GameLogicTest {
     @Before
     public void before(){
         game = new GameLogic();
-        game.newGame();
-        deck = game.getRemainingDeck();
-        stacks = game.getGameStacks();
-        game.getCard(1,1).setRank("10");
-        game.getCard(1,1).setSuit("D");
-        game.getCard(2,2).setRank("9");
-        game.getCard(2,2).setSuit("C");
+//        game.newGame();
+//        deck = game.getRemainingDeck();
+//        stacks = game.getGameStacks();
+//        game.getCard(1,1).setRank("10");
+//        game.getCard(1,1).setSuit("D");
+//        game.getCard(2,2).setRank("9");
+//        game.getCard(2,2).setSuit("C");
+
 
     }
 
     @Test
     public void canSetupGameStacks(){
         game.newGame();
+        stacks = game.getGameStacks();
         assertEquals(7, stacks.size());
 
     }
@@ -40,6 +42,8 @@ public class GameLogicTest {
     @Test
     public void testInnerStackSize(){
         game.newGame();
+        stacks = game.getGameStacks();
+
         int count = 1;
         for(ArrayList<Card> stack : stacks ){
             assertEquals(count, stack.size());
@@ -49,6 +53,8 @@ public class GameLogicTest {
     @Test
     public void testInnerStackCardReveal(){
         game.newGame();
+        deck = game.getRemainingDeck();
+        stacks = game.getGameStacks();
         int count =0;
         for(ArrayList<Card> stack : stacks){
             if(count>0) {
@@ -68,6 +74,8 @@ public class GameLogicTest {
     @Test
     public void testCanChangeCardtoRevealed(){
         game.newGame();
+        deck = game.getRemainingDeck();
+        stacks = game.getGameStacks();
         stacks.get(2).get(1).reveal();
         assertEquals(true, stacks.get(2).get(1).isRevealed());
     }
@@ -75,12 +83,14 @@ public class GameLogicTest {
     @Test
     public void canGetCard(){
         game.newGame();
+        stacks = game.getGameStacks();
         assertEquals(stacks.get(2).get(1), game.getCard(2,1));
     }
 
     @Test
     public void testCanMoveCard(){
         game.newGame();
+        stacks = game.getGameStacks();
         Card card = game.getCard(2,1);
 //        System.out.println(stacks.get(2)+"move");
 //        System.out.println(stacks.get(1)+"Target");
@@ -94,6 +104,7 @@ public class GameLogicTest {
     @Test
     public void testCanMoveCardLarge(){
         game.newGame();
+        stacks = game.getGameStacks();
         Card card = game.getCard(6,0);
         game.move(6,0,0);
         assertEquals(game.getCard(0,1), card);
@@ -102,10 +113,20 @@ public class GameLogicTest {
 
     @Test
     public void testIsValidMove(){
+        game.newGame();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
         assertEquals(true, game.isValidMove(game.getCard(2,2),game.getCard(1,1)));
     }
     @Test
     public void testCanGetPotentialMoves(){
+        game.newGame();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
         System.out.println(game.getMoves(2,2));
         assertEquals(true,game.getMoves(2,2).containsKey(1));
         assertEquals(true,game.getMoves(2,2).containsValue(1));
@@ -114,11 +135,23 @@ public class GameLogicTest {
 
     @Test
     public void remainingDeckIsCorrectSize(){
-        assertEquals(24, deck.size());
+        game.newGame();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
+        assertEquals(24, game.getRemainingDeck().size());
     }
 
     @Test
     public void testCanDrawFromDeckToPile(){
+        game.newGame();
+        deck = game.getRemainingDeck();
+        stacks = game.getGameStacks();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
         Card card = deck.get(deck.size()-1);
         game.deckDraw();
         assertEquals(card, game.getPileCard());
@@ -127,6 +160,9 @@ public class GameLogicTest {
 
     @Test
     public void testCanDrawMultipleCards(){
+        game.newGame();
+        deck = game.getRemainingDeck();
+        stacks = game.getGameStacks();
         Card card = deck.get(deck.size()-3);
         game.deckDraw();
         game.deckDraw();
@@ -136,6 +172,8 @@ public class GameLogicTest {
 
     @Test
     public void testCanDrawAllCards(){
+        game.newGame();
+        deck = game.getRemainingDeck();
         for(int i = 0; i < 24; i++){
             game.deckDraw();
         }
@@ -144,6 +182,8 @@ public class GameLogicTest {
 
     @Test
     public void testCanDrawAllCardsThenResetPile(){
+        game.newGame();
+        deck = game.getRemainingDeck();
         Card card = deck.get(deck.size()-1);
         for(int i = 0; i <= 24; i++){
             game.deckDraw();
@@ -175,7 +215,12 @@ public class GameLogicTest {
 
     @Test
     public void testCanGetMovesForPileCard(){
+        game.newGame();
         game.deckDraw();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
         game.getPileCard().setRank("9");
         game.getPileCard().setSuit("C");
         assertEquals(true,game.getMoves(-1,-1).containsKey(1));
@@ -185,6 +230,7 @@ public class GameLogicTest {
 
     @Test
     public void testCanMovePileCard(){
+        game.newGame();
         game.deckDraw();
         game.getPileCard().setRank("9");
         game.getPileCard().setSuit("C");
@@ -205,12 +251,14 @@ public class GameLogicTest {
 
     @Test
     public void testCanRemoveCardFromGameStack(){
+        game.newGame();
         game.removeCard(0,0);
         assertEquals(0, game.getGameStacks().get(0).size());
     }
 
     @Test
     public void testCanRemoveCardFromPile(){
+        game.newGame();
         this.game.deckDraw();
         this.game.deckDraw();
         game.removeCard(-1,0);
@@ -220,6 +268,7 @@ public class GameLogicTest {
 
     @Test
     public void testCanRemoveCardFromPile2(){
+        game.newGame();
         this.game.deckDraw();
         game.removeCard(-1,0);
 
@@ -238,7 +287,6 @@ public class GameLogicTest {
 
     @Test
     public void testMoveToAceStackFromPile(){
-        //two copies of the card affecting test
         game.newGame();
         game.deckDraw();
         game.getCard(-1,0).setRank("A");
