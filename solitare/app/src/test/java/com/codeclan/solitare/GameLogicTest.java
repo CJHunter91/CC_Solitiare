@@ -186,7 +186,7 @@ public class GameLogicTest {
         game.getPileCard().setRank("9");
         game.getPileCard().setSuit("C");
         Card card = game.getPileCard();
-        game.move(1);
+        game.movePileCard(1);
         assertEquals(card, game.getCard(1,2));
     }
 

@@ -50,10 +50,6 @@ public class GameLogic {
 
     }
 
-    public Deck getDeck(){
-        return this.deck;
-    }
-
     public ArrayList<Card> getRemainingDeck() {
         return this.deck.getDeck();
     }
@@ -106,7 +102,7 @@ public class GameLogic {
         }
     }
 
-    public void move(int targetStack){
+    public void movePileCard(int targetStack){
         Card moveCard = getPileCard();
         this.gameStacks.get(targetStack).add(moveCard);
         this.pile.remove(this.pile.size()-1);
