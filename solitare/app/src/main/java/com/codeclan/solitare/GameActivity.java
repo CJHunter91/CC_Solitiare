@@ -57,23 +57,22 @@ public class GameActivity extends AppCompatActivity {
         int count = 0;
         //create view for pile card
 
-        Button pileCard = (Button) findViewById(R.id.pile);
+        final Button pileCard = (Button) findViewById(R.id.pile);
         if(game.getPile().size() > 0) {
             Card pileCardObject = redrawGame.getPileCard();
             pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
+            pileCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-//            pileCard.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                        Log.i("TAG", "index :" + pileCard.getId());
-//                        Toast.makeText(getApplicationContext(),
-//                                "Selected Button Rank :" + pileCard.getId(),
-//                                Toast.LENGTH_SHORT).show();
-//                        selectedCard = pileCard.getId();
-//                        isSelected = true;
-//                    }
-//            });
+                        Log.i("TAG", "index :" + pileCard.getId());
+                        Toast.makeText(getApplicationContext(),
+                                "Selected Button Rank :" + pileCard.getId(),
+                                Toast.LENGTH_SHORT).show();
+                        selectedCard = pileCard.getId();
+                        isSelected = true;
+                    }
+            });
         }
         else{
             pileCard.setText("");
@@ -83,7 +82,11 @@ public class GameActivity extends AppCompatActivity {
             LinearLayout linearRow = new LinearLayout(this);
             linearRow.setOrientation(LinearLayout.VERTICAL);
             //need to create condition that if stack == 0 create one empty button
-
+            if(stack.size() == 0){
+                Button cardButton = new Button(this);
+                cardButton.setText("");
+                cardButton.setId(count);
+            }
             for (final Card card : stack) {
                 //update hash
                 gameState.put(count, card);
