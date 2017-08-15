@@ -37,7 +37,6 @@ public class GameActivity extends AppCompatActivity {
                 Button cardButton = new Button(this);
                 cardButton.setText(card.getRank() + card.getSuit());
                 cardButton.setId(count);
-                cardButton.setTag(count, card);
                 //make the last items height larger
                 if(stack.indexOf(card) == stack.size()-1) {
                     cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
