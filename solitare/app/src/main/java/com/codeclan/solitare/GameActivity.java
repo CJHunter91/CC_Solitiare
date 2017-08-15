@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.Layout;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -35,14 +36,15 @@ public class GameActivity extends AppCompatActivity {
                 linearColumn.setOrientation(LinearLayout.HORIZONTAL);
 
                 Button cardButton = new Button(this);
-                cardButton.setWidth(20);
                 cardButton.setText(card.getRank() + card.getSuit());
                 cardButton.setId(count);
-                linearColumn.addView(cardButton,params);
+                cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150,200));
+                cardButton.setTextSize(10);
+                linearColumn.addView(cardButton);
                 linearRow.addView(linearColumn);
                 count++;
             }
-            gameStack1.addView(linearRow,params);
+            gameStack1.addView(linearRow);
         }
     }
 }
