@@ -116,7 +116,12 @@ public class GameActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),
                                     "Clicked Button Rank :" + index,
                                     Toast.LENGTH_SHORT).show();
-                            redrawGame.makeValidMove(gameState.get(selectedCard),redrawGame.getGameStacks().indexOf(stack));
+                            if (selectedCard == pileCard.getId()){
+                                redrawGame.movePileCard(redrawGame.getGameStacks().indexOf(stack));
+                            }
+                            else {
+                                redrawGame.makeValidMove(gameState.get(selectedCard), redrawGame.getGameStacks().indexOf(stack));
+                            }
                             reDrawState(redrawGame, gameStacks);
                             isSelected = false;
                         }
