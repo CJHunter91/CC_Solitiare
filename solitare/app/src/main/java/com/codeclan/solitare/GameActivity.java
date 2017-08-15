@@ -36,10 +36,19 @@ public class GameActivity extends AppCompatActivity {
 
 
         //find the gameStacks view
-        LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
+        final LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
 
         reDrawState(game, gameStack1);
+
+        Button deckCard = (Button) findViewById(R.id.draw);
+        deckCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.deckDraw();
+                reDrawState(game, gameStack1);
+            }
+        });
     }
 
     public void reDrawState(GameLogic game, final LinearLayout gameStacks){
@@ -47,8 +56,9 @@ public class GameActivity extends AppCompatActivity {
         gameStacks.removeAllViews();
         int count = 0;
         //create view for pile card
+
+        Button pileCard = (Button) findViewById(R.id.pile);
         if(game.getPile().size() > 0) {
-            final Button pileCard = (Button) findViewById(R.id.pile);
             Card pileCardObject = redrawGame.getPileCard();
             pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
 
@@ -65,10 +75,14 @@ public class GameActivity extends AppCompatActivity {
 //                    }
 //            });
         }
+        else{
+            pileCard.setText("");
+        }
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
             linearRow.setOrientation(LinearLayout.VERTICAL);
+            //need to create condition that if stack == 0 create one empty button
 
             for (final Card card : stack) {
                 //update hash
