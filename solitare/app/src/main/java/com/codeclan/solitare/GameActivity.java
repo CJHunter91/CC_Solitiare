@@ -24,8 +24,7 @@ public class GameActivity extends AppCompatActivity {
 
         LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+
         int count = 0;
         for(ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
@@ -38,7 +37,14 @@ public class GameActivity extends AppCompatActivity {
                 Button cardButton = new Button(this);
                 cardButton.setText(card.getRank() + card.getSuit());
                 cardButton.setId(count);
-                cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150,200));
+                cardButton.setTag(count, card);
+                //make the last items height larger
+                if(stack.indexOf(card) == stack.size()-1) {
+                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
+                }
+                else{
+                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 100));
+                }
                 cardButton.setTextSize(10);
                 linearColumn.addView(cardButton);
                 linearRow.addView(linearColumn);
