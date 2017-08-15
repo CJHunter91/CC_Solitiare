@@ -72,8 +72,11 @@ public class GameLogic {
     }
 
     public Card getPileCard(){
-        Card card = this.pile.get(pile.size()-1);
-        return card;
+        if(getPile().size() >= 1) {
+            Card card = this.pile.get(pile.size() - 1);
+            return card;
+        }
+        return null;
     }
 
     public HashMap<Integer, Integer> getMoves(Card card){

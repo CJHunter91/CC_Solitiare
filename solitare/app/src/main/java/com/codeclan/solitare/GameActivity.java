@@ -35,7 +35,7 @@ public class GameActivity extends AppCompatActivity {
         game.newGame();
 
 
-        //find the gameStacks viw
+        //find the gameStacks view
         LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
         reDrawState(game, gameStack1);
@@ -46,12 +46,17 @@ public class GameActivity extends AppCompatActivity {
         final GameLogic redrawGame = game;
         gameStacks.removeAllViews();
         int count = 0;
+        //create view for pile card
+        Button pileCard = (Button) findViewById(R.id.pile);
+        Card pileCardObject = redrawGame.getPileCard();
+        pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
             linearRow.setOrientation(LinearLayout.VERTICAL);
 
             for (final Card card : stack) {
+                //update hash
                 gameState.put(count, card);
                 LinearLayout linearColumn = new LinearLayout(this);
                 linearColumn.setOrientation(LinearLayout.HORIZONTAL);
