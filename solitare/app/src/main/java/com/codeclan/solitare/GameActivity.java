@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class GameActivity extends AppCompatActivity {
@@ -77,7 +78,6 @@ public class GameActivity extends AppCompatActivity {
         gameStacks.removeAllViews();
         int count = 0;
         //create view for pile card
-
         final Button pileCard = (Button) findViewById(R.id.pile);
         if(game.getPile().size() > 0) {
             Card pileCardObject = redrawGame.getPileCard();
@@ -98,6 +98,27 @@ public class GameActivity extends AppCompatActivity {
         else{
             pileCard.setText("");
         }
+        // find ace stacks
+        ArrayList<Button> aceButtons = new ArrayList<>();
+        Button aceStack1 = (Button) findViewById(R.id.ace_stack1);
+        Button aceStack2 = (Button) findViewById(R.id.ace_stack2);
+        Button aceStack3 = (Button) findViewById(R.id.ace_stack3);
+        Button aceStack4 = (Button) findViewById(R.id.ace_stack4);
+        aceButtons.add(aceStack1);
+        aceButtons.add(aceStack2);
+        aceButtons.add(aceStack3);
+        aceButtons.add(aceStack4);
+        //setAce stack to equal last card in stack
+        count = 0;
+        for(Button button : aceButtons){
+            if(game.getAceStacks().get(count).size() > 0){
+                String rank = game.getLastAceCard(count).getRank();
+                String suit = game.getLastAceCard(count).getSuit();
+                button.setText(rank + suit);
+            }
+
+        }
+
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
