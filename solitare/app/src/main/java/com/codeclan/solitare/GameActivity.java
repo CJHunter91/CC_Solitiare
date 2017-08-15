@@ -23,6 +23,7 @@ public class GameActivity extends AppCompatActivity {
     HashMap<Integer, Card> gameState;
     boolean isSelected;
     int selectedCard;
+    GameLogic game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +31,21 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         gameState = new HashMap<>();
         isSelected = false;
-        final GameLogic game = new GameLogic();
+        game = new GameLogic();
         game.newGame();
 
 
         //find the gameStacks viw
         LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
-        gameStack1.removeAllViews();
+        reDrawState(game, gameStack1);
+
+    }
+
+    public void reDrawState(GameLogic game, final LinearLayout gameStacks){
+        final GameLogic redrawGame = game;
+        gameStacks.removeAllViews();
         int count = 0;
-        int stackCount = 0;
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
@@ -73,7 +79,8 @@ public class GameActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),
                                     "Clicked Button Rank :" + index,
                                     Toast.LENGTH_SHORT).show();
-                            game.makeValidMove(gameState.get(selectedCard),game.getGameStacks().indexOf(stack));
+                            redrawGame.makeValidMove(gameState.get(selectedCard),redrawGame.getGameStacks().indexOf(stack));
+                            reDrawState(redrawGame, gameStacks);
                             isSelected = false;
                         }
                         else{
@@ -88,8 +95,7 @@ public class GameActivity extends AppCompatActivity {
                 });
                 count++;
             }
-            stackCount++;
-            gameStack1.addView(linearRow);
+            gameStacks.addView(linearRow);
         }
     }
 }
