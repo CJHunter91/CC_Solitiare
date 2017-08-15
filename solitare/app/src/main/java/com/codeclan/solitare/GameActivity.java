@@ -1,42 +1,59 @@
 package com.codeclan.solitare;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.Layout;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameActivity extends AppCompatActivity {
+
+    HashMap<Integer, Card> gameState;
+    boolean isSelected;
+    int selectedCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        GameLogic game = new GameLogic();
+        gameState = new HashMap<>();
+        isSelected = false;
+        final GameLogic game = new GameLogic();
         game.newGame();
 
+
+        //find the gameStacks viw
         LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
-
+        gameStack1.removeAllViews();
         int count = 0;
-        for(ArrayList<Card> stack : game.getGameStacks()) {
+        int stackCount = 0;
+        //go through the gameStacks to display cards
+        for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
             linearRow.setOrientation(LinearLayout.VERTICAL);
 
-            for (Card card : stack) {
+            for (final Card card : stack) {
+                gameState.put(count, card);
                 LinearLayout linearColumn = new LinearLayout(this);
                 linearColumn.setOrientation(LinearLayout.HORIZONTAL);
 
                 Button cardButton = new Button(this);
                 cardButton.setText(card.getRank() + card.getSuit());
                 cardButton.setId(count);
+                cardButton.setTextSize(10);
                 //make the last items height larger
                 if(stack.indexOf(card) == stack.size()-1) {
                     cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
@@ -44,11 +61,34 @@ public class GameActivity extends AppCompatActivity {
                 else{
                     cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 100));
                 }
-                cardButton.setTextSize(10);
                 linearColumn.addView(cardButton);
                 linearRow.addView(linearColumn);
+                final int index = count;
+                cardButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(isSelected){
+                            Log.i("TAG", "index :" + index);
+                            Toast.makeText(getApplicationContext(),
+                                    "Clicked Button Rank :" + index,
+                                    Toast.LENGTH_SHORT).show();
+                            game.makeValidMove(gameState.get(selectedCard),game.getGameStacks().indexOf(stack));
+                            isSelected = false;
+                        }
+                        else{
+                            Log.i("TAG", "index :" + index);
+                            Toast.makeText(getApplicationContext(),
+                                    "Selected Button Rank :" + index,
+                                    Toast.LENGTH_SHORT).show();
+                            selectedCard = index;
+                            isSelected = true;
+                        }
+                    }
+                });
                 count++;
             }
+            stackCount++;
             gameStack1.addView(linearRow);
         }
     }
