@@ -18,36 +18,22 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
         GameLogic game = new GameLogic();
         game.newGame();
 
-        ArrayList<TextView> cardViews = new ArrayList<>();
+        LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.stack_1);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
 
-        RelativeLayout gameLayout = (RelativeLayout) findViewById(R.id.game_layout);
-        int count = 0;
+        for(Card card : game.getGameStacks().get(5)) {
+            LinearLayout linearRow = new LinearLayout(this);
+            linearRow.setOrientation(LinearLayout.VERTICAL);
 
+                TextView cardView = new TextView(this);
+                cardView.setText(card.getRank() + card.getSuit()+ ", ");
+                gameStack1.addView(cardView);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        Button btn = new Button(this);
-        btn.setText("real");
-        btn.setBackgroundColor(Color.rgb(70, 80, 90));
-        btn.setHeight(70);
-        btn.setWidth(50);
-        gameLayout.addView(btn);
-//        for(ArrayList<Card> stack : game.getGameStacks()){
-//            for(Card card : stack){
-//                LinearLayout linearLayout = new LinearLayout(this);
-//                TextView stackTextView = new TextView(this);
-//                stackTextView.setText(card.getRank());
-//                linearLayout.addView(stackTextView);
-//                mainLayout.addView(linearLayout);
-//
-//            }
-//        }
         }
     }
+}
 
