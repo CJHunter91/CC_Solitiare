@@ -22,17 +22,27 @@ public class GameActivity extends AppCompatActivity {
         game.newGame();
 
         LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.stack_1);
+        gameStack1.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
-
-        for(Card card : game.getGameStacks().get(5)) {
+        int count = 0;
+        for(ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);
             linearRow.setOrientation(LinearLayout.VERTICAL);
 
-                TextView cardView = new TextView(this);
-                cardView.setText(card.getRank() + card.getSuit()+ ", ");
-                gameStack1.addView(cardView);
+            for (Card card : stack) {
+                LinearLayout linearColumn = new LinearLayout(this);
+                linearColumn.setOrientation(LinearLayout.HORIZONTAL);
 
+                Button cardButton = new Button(this);
+                cardButton.setWidth(20);
+                cardButton.setText(card.getRank() + card.getSuit());
+                cardButton.setId(count);
+                linearColumn.addView(cardButton,params);
+                linearRow.addView(linearColumn);
+                count++;
+            }
+            gameStack1.addView(linearRow,params);
         }
     }
 }
