@@ -116,7 +116,7 @@ public class GameActivity extends AppCompatActivity {
                 String suit = game.getLastAceCard(count).getSuit();
                 button.setText(rank + suit);
             }
-
+            count++;
         }
 
         //go through the gameStacks to display cards
@@ -149,6 +149,18 @@ public class GameActivity extends AppCompatActivity {
                 linearColumn.addView(cardButton);
                 linearRow.addView(linearColumn);
                 final int index = count;
+                cardButton.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Log.i("TAG", "index :" + index);
+                        Toast.makeText(getApplicationContext(),
+                                "Clicked Button Rank :" + index,
+                                Toast.LENGTH_SHORT).show();
+                        redrawGame.moveToAce(card);
+                        reDrawState(redrawGame, gameStacks);
+                        return true;
+                    }
+                });
                 cardButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
