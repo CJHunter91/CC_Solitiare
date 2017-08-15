@@ -22,7 +22,7 @@ public class GameActivity extends AppCompatActivity {
         GameLogic game = new GameLogic();
         game.newGame();
 
-        LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.stack_1);
+        LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
