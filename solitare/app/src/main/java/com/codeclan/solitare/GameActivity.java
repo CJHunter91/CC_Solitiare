@@ -80,8 +80,20 @@ public class GameActivity extends AppCompatActivity {
         //create view for pile card
         final Button pileCard = (Button) findViewById(R.id.pile);
         if(game.getPile().size() > 0) {
-            Card pileCardObject = redrawGame.getPileCard();
+            final Card pileCardObject = redrawGame.getPileCard();
             pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
+            pileCard.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Log.i("TAG", "index :" + "Pile");
+                    Toast.makeText(getApplicationContext(),
+                            "Clicked Button Rank :" + "Pile",
+                            Toast.LENGTH_SHORT).show();
+                    redrawGame.moveToAce(pileCardObject);
+                    reDrawState(redrawGame, gameStacks);
+                    return true;
+                }
+            });
             pileCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
