@@ -45,6 +45,7 @@ public class GameActivity extends AppCompatActivity {
 
         reDrawState(game, gameStack1);
 
+
         Button deckCard = (Button) findViewById(R.id.draw);
         deckCard.setOnClickListener(new View.OnClickListener() {
             @Override

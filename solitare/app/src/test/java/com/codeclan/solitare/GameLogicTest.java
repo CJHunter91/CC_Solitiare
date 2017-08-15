@@ -299,6 +299,17 @@ public class GameLogicTest {
         assertEquals(0, game.getPile().size());
     }
 
+    @Test
+    public void testCanGetLastItemInAceStack(){
+        game.newGame();
+        game.deckDraw();
+        game.getCard(-1,0).setRank("A");
+        Card card = game.getCard(-1,0);
+        game.moveToAce(game.getCard(-1,0));
+        assertEquals(card ,game.getLastAceCard(0));
+        assertEquals(0, game.getPile().size());
+    }
+
 
     @Test
     public void makeValidMove(){

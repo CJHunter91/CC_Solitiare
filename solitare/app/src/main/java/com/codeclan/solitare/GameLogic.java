@@ -63,10 +63,10 @@ public class GameLogic {
 
     }
 
-    public Card getAceCard(int stack, int stackItem){
-        return aceStacks.get(stack).get(stackItem);
-    }
 
+    public Card getLastAceCard(int stack){
+        return this.aceStacks.get(stack).get(this.aceStacks.get(stack).size() -1);
+    }
     public ArrayList<Card> getRemainingDeck() {
         return this.deck.getDeck();
     }
@@ -201,7 +201,7 @@ public class GameLogic {
                 break;
             }
             else if(stack.size() > 1 && stack.size() < 13){
-                Card lastInAceStack =  getAceCard(aceStacks.indexOf(stack),stack.size()-1);
+                Card lastInAceStack =  getLastAceCard(aceStacks.indexOf(stack));
                 if(this.deck.getCardValue(lastInAceStack) == cardValue - 1 &&
                         lastInAceStack.getSuit().equals(card.getSuit())){
                     stack.add(card);
