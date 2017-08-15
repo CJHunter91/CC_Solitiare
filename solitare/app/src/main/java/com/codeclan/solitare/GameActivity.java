@@ -47,9 +47,11 @@ public class GameActivity extends AppCompatActivity {
         gameStacks.removeAllViews();
         int count = 0;
         //create view for pile card
-        Button pileCard = (Button) findViewById(R.id.pile);
-        Card pileCardObject = redrawGame.getPileCard();
-        pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
+        if(game.getPile().size() > 0) {
+            Button pileCard = (Button) findViewById(R.id.pile);
+            Card pileCardObject = redrawGame.getPileCard();
+            pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
+        }
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearRow = new LinearLayout(this);

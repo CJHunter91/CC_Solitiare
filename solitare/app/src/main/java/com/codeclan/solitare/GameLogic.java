@@ -177,6 +177,9 @@ public class GameLogic {
             this.gameStacks.get(targetStack).add(temp.get(j));
 
         }
+        if(getGameStacks().get(stack).size() > 0){
+            getCard(stack, stackItem - 1).reveal();
+        }
     }
 
     public void movePileCard(int targetStack){
