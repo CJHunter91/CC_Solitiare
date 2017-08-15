@@ -123,6 +123,7 @@ public class GameActivity extends AppCompatActivity {
         //setAce stack to equal last card in stack
         count = 0;
         for(Button button : aceButtons){
+            button.setText("");
             if(game.getAceStacks().get(count).size() > 0){
                 String rank = game.getLastAceCard(count).getRank();
                 String suit = game.getLastAceCard(count).getSuit();
@@ -151,6 +152,9 @@ public class GameActivity extends AppCompatActivity {
                 cardButton.setText(card.getRank() + card.getSuit());
                 cardButton.setId(count);
                 cardButton.setTextSize(10);
+                if(game.getColour(card).equals("R")){
+                    cardButton.setTextColor(Color.RED);
+                }
                 //make the last items height larger
                 if(stack.indexOf(card) == stack.size()-1) {
                     cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
