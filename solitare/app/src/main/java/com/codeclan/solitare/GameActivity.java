@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     boolean isSelected;
     int selectedCard;
     GameLogic game;
+    LinearLayout gameStack1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
 
 
         //find the gameStacks view
-        final LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
+        gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
 
         reDrawState(game, gameStack1);
@@ -49,6 +53,22 @@ public class GameActivity extends AppCompatActivity {
                 reDrawState(game, gameStack1);
             }
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == R.id.new_game) {
+            game.newGame();
+            reDrawState(game, gameStack1);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     public void reDrawState(GameLogic game, final LinearLayout gameStacks){
