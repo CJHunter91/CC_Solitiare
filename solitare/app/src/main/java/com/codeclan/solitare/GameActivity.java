@@ -38,8 +38,8 @@ public class GameActivity extends AppCompatActivity {
         //find the gameStacks view
         LinearLayout gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
-        reDrawState(game, gameStack1);
 
+        reDrawState(game, gameStack1);
     }
 
     public void reDrawState(GameLogic game, final LinearLayout gameStacks){
@@ -48,9 +48,22 @@ public class GameActivity extends AppCompatActivity {
         int count = 0;
         //create view for pile card
         if(game.getPile().size() > 0) {
-            Button pileCard = (Button) findViewById(R.id.pile);
+            final Button pileCard = (Button) findViewById(R.id.pile);
             Card pileCardObject = redrawGame.getPileCard();
             pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
+
+//            pileCard.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                        Log.i("TAG", "index :" + pileCard.getId());
+//                        Toast.makeText(getApplicationContext(),
+//                                "Selected Button Rank :" + pileCard.getId(),
+//                                Toast.LENGTH_SHORT).show();
+//                        selectedCard = pileCard.getId();
+//                        isSelected = true;
+//                    }
+//            });
         }
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
