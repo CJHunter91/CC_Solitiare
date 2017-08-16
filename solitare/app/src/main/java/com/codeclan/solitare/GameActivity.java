@@ -73,6 +73,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void reDrawState(GameLogic game, final LinearLayout gameStacks){
+        if(game.gameWon()){
+            Toast.makeText(getApplicationContext(),
+                    "You Won in 'TIME HERE'",
+                    Toast.LENGTH_SHORT).show();
+        }
         final GameLogic redrawGame = game;
         gameStacks.removeAllViews();
         int count = 0;
@@ -148,7 +153,9 @@ public class GameActivity extends AppCompatActivity {
                 linearColumn.setOrientation(LinearLayout.HORIZONTAL);
 
                 Button cardButton = new Button(this);
-                cardButton.setText(card.getRank() + card.getSuit());
+                if(card.isRevealed()){
+                    cardButton.setText(card.getRank() + card.getSuit());
+                }
                 cardButton.setId(count);
                 cardButton.setTextSize(10);
                 if(game.getColour(card).equals("R")){

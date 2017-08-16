@@ -211,6 +211,12 @@ public class GameLogic {
 
     }
 
+    public void moveFromAceStack(int aceStack, int targetStack) {
+        Card card = getLastAceCard(aceStack);
+        this.aceStacks.get(aceStack).remove(this.aceStacks.get(aceStack).size()-1);
+        this.gameStacks.get(targetStack).add(card);
+    }
+
     public void moveToAce(Card card){
         //needs to remove the card if added
         if(card.isRevealed()) {
@@ -279,7 +285,6 @@ public class GameLogic {
         }
 
     }
-
 
 
 }
