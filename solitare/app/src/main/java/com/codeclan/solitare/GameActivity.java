@@ -137,11 +137,6 @@ public class GameActivity extends AppCompatActivity {
             LinearLayout linearRow = new LinearLayout(this);
             linearRow.setOrientation(LinearLayout.VERTICAL);
             //need to create condition that if stack == 0 create one empty button
-            if(stack.size() == 0){
-                Button cardButton = new Button(this);
-                cardButton.setText("");
-                cardButton.setId(count);
-            }
             for (final Card card : stack) {
                 //update hash
                 gameState.put(count, card);
@@ -184,13 +179,15 @@ public class GameActivity extends AppCompatActivity {
                         if(isSelected){
                             Log.i("TAG", "index :" + index);
                             Toast.makeText(getApplicationContext(),
-                                    "Clicked Button Rank :" + index,
+                                    "Clicked Button Rank :" + index + card.isRevealed(),
                                     Toast.LENGTH_SHORT).show();
                             if (selectedCard == pileCard.getId()){
-                                redrawGame.movePileCard(redrawGame.getGameStacks().indexOf(stack));
+                                redrawGame.makeValidMove(redrawGame.getPileCard(),
+                                        redrawGame.getGameStacks().indexOf(stack));
                             }
                             else {
-                                redrawGame.makeValidMove(gameState.get(selectedCard), redrawGame.getGameStacks().indexOf(stack));
+                                redrawGame.makeValidMove(gameState.get(selectedCard),
+                                        redrawGame.getGameStacks().indexOf(stack));
                             }
                             reDrawState(redrawGame, gameStacks);
                             isSelected = false;
@@ -198,7 +195,7 @@ public class GameActivity extends AppCompatActivity {
                         else{
                             Log.i("TAG", "index :" + index);
                             Toast.makeText(getApplicationContext(),
-                                    "Selected Button Rank :" + index,
+                                    "Selected Button Rank :" + index + card.isRevealed(),
                                     Toast.LENGTH_SHORT).show();
                             selectedCard = index;
                             isSelected = true;
@@ -207,6 +204,16 @@ public class GameActivity extends AppCompatActivity {
                 });
                 count++;
             }
+            if(stack.size() == 0){
+                Button cardButton = new Button(this);
+                cardButton.setText("");
+                cardButton.setId(count);
+                LinearLayout linearColumn = new LinearLayout(this);
+                linearColumn.setOrientation(LinearLayout.HORIZONTAL);
+                linearColumn.addView(cardButton);
+                linearRow.addView(linearColumn);
+            }
+
             gameStacks.addView(linearRow);
         }
     }

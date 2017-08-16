@@ -180,8 +180,12 @@ public class GameLogic {
             this.gameStacks.get(targetStack).add(temp.get(j));
 
         }
-        if(getGameStacks().get(stack).size() > 0){
-            getCard(stack, stackItem - 1).reveal();
+        revealNextCard(stack);
+    }
+
+    public void revealNextCard(int stackNum){
+        if(getGameStacks().get(stackNum).size() > 0){
+            getCard(stackNum, getGameStacks().get(stackNum).size() - 1).reveal();
         }
     }
 
@@ -249,6 +253,7 @@ public class GameLogic {
         else if(moveCard.getRank().equals("K")){
             move(moveCard, targetStack);
         }
+
     }
 
 

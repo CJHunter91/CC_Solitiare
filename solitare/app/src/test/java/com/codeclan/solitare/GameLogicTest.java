@@ -347,17 +347,42 @@ public class GameLogicTest {
     }
 
     @Test
+    public void canRevealNextCard(){
+        game.newGame();
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        game.getCard(2,2).setRank("9");
+        game.getCard(2,2).setSuit("C");
+        Card card1 = game.getCard(1,1);
+        Card card2 = game.getCard(2,2);
+        game.makeValidMove(card2, 1);
+        assertEquals(true, game.getCard(2,1).isRevealed());
+    }
+
+    @Test
     public void canMoveKingToEmptyStack(){
         game.newGame();
         game.removeCard(1,1);
         game.removeCard(1,0);
         game.getCard(2,2).setRank("K");
         game.getCard(2,2).setSuit("C");
-        game.getCard(2,2).reveal();
         Card card = game.getCard(2,2);
         game.makeValidMove(game.getCard(2,2), 1);
         assertEquals(card, game.getCard(1,0));
     }
+
+    @Test
+    public void canRevealonKingMove(){
+        game.newGame();
+        game.removeCard(1,1);
+        game.removeCard(1,0);
+        game.getCard(2,2).setRank("K");
+        game.getCard(2,2).setSuit("C");
+        Card card = game.getCard(2,2);
+        game.makeValidMove(game.getCard(2,2), 1);
+        assertEquals(true, game.getCard(2,1).isRevealed());
+    }
+
 
 
 
