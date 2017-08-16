@@ -81,6 +81,11 @@ public class GameActivity extends AppCompatActivity {
         final Button pileCard = (Button) findViewById(R.id.pile);
         if(game.getPile().size() > 0) {
             final Card pileCardObject = redrawGame.getPileCard();
+            pileCard.setTextColor(Color.BLACK);
+            if(game.getColour(redrawGame.getPileCard()).equals("R")){
+                pileCard.setTextColor(Color.RED);
+            }
+
             pileCard.setText(pileCardObject.getRank() + pileCardObject.getSuit());
             pileCard.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -207,12 +212,36 @@ public class GameActivity extends AppCompatActivity {
             if(stack.size() == 0){
                 Button cardButton = new Button(this);
                 cardButton.setText("");
+                final int index = count;
                 cardButton.setId(count);
                 cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
                 LinearLayout linearColumn = new LinearLayout(this);
                 linearColumn.setOrientation(LinearLayout.HORIZONTAL);
+                cardButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(isSelected){
+                            Log.i("TAG", "index :" + index);
+                            Toast.makeText(getApplicationContext(),
+                                    "Clicked Button Rank :" + index + "Empty",
+                                    Toast.LENGTH_SHORT).show();
+                            if (selectedCard == pileCard.getId()){
+                                redrawGame.makeValidMove(redrawGame.getPileCard(),
+                                        redrawGame.getGameStacks().indexOf(stack));
+                            }
+                            else {
+                                redrawGame.makeValidMove(gameState.get(selectedCard),
+                                        redrawGame.getGameStacks().indexOf(stack));
+                            }
+                            reDrawState(redrawGame, gameStacks);
+                            isSelected = false;
+                        }
+                    }
+                });
                 linearColumn.addView(cardButton);
                 linearRow.addView(linearColumn);
+                count++;
             }
 
             gameStacks.addView(linearRow);
