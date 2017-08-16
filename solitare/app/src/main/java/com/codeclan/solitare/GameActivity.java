@@ -138,6 +138,10 @@ public class GameActivity extends AppCompatActivity {
                 String suit = game.getLastAceCard(count).getSuit();
                 final Card card = game.getLastAceCard(count);
                 button.setText(rank + suit);
+                button.setTextColor(Color.BLACK);
+                if(game.getColour(redrawGame.getLastAceCard(count)).equals("R")){
+                    button.setTextColor(Color.RED);
+                }
                 gameState.put(button.getId(), card);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
