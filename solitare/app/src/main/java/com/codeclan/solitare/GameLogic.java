@@ -184,7 +184,8 @@ public class GameLogic {
     }
 
     public void revealNextCard(int stackNum){
-        if(getGameStacks().get(stackNum).size() > 0){
+        //conditional layout needs to remain the same. else no -1 game stack
+        if(stackNum != -1 && getGameStacks().get(stackNum).size() > 0){
             getCard(stackNum, getGameStacks().get(stackNum).size() - 1).reveal();
         }
     }
@@ -206,6 +207,7 @@ public class GameLogic {
                     ArrayList<Integer> find = findCard(card);
                     System.out.println(find);
                     removeCard(find.get(0), find.get(1));
+                    revealNextCard(find.get(0));
                     break;
                 } else if (stack.size() > 0 && stack.size() < 13) {
                     Card lastInAceStack = getLastAceCard(aceStacks.indexOf(stack));
@@ -214,6 +216,7 @@ public class GameLogic {
                         stack.add(card);
                         ArrayList<Integer> find = findCard(card);
                         removeCard(find.get(0), find.get(1));
+                        revealNextCard(find.get(0));
                         break;
                     }
                 }

@@ -289,6 +289,15 @@ public class GameLogicTest {
     }
 
     @Test
+    public void testRevealsNextCardOnAceMove(){
+        game.newGame();
+        game.getCard(1,1).setRank("A");
+        Card card = game.getCard(1,1);
+        game.moveToAce(game.getCard(1,1));
+        assertEquals(true, game.getCard(1,0).isRevealed());
+    }
+
+    @Test
     public void testMoveToAceStackFromPile(){
         game.newGame();
         game.deckDraw();
@@ -372,7 +381,7 @@ public class GameLogicTest {
     }
 
     @Test
-    public void canRevealonKingMove(){
+    public void canRevealOnKingMove(){
         game.newGame();
         game.removeCard(1,1);
         game.removeCard(1,0);
