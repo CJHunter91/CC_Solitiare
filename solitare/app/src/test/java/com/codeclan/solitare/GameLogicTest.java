@@ -243,6 +243,19 @@ public class GameLogicTest {
     }
 
     @Test
+    public void testCanMakeValidMoveForPileCard(){
+        game.newGame();
+        game.deckDraw();
+        game.getPileCard().setRank("9");
+        game.getPileCard().setSuit("C");
+        game.getCard(1,1).setRank("10");
+        game.getCard(1,1).setSuit("D");
+        Card card = game.getPileCard();
+        game.makeValidMove(card,1);
+        assertEquals(card, game.getCard(1,2));
+    }
+
+    @Test
     public void testCanMoveToAceStack(){
         game.newGame();
         game.getCard(0,0).setRank("A");

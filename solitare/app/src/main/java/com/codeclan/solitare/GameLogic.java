@@ -246,10 +246,12 @@ public class GameLogic {
 
     public void makeValidMove(Card moveCard, int targetStack){
 
-
         if(this.gameStacks.get(targetStack).size() > 0){
             Card targetCard = getCard(targetStack, this.gameStacks.get(targetStack).size()-1);
-            if(isValidMove(moveCard,targetCard)){
+            if(isValidMove(moveCard,targetCard) && findCard(moveCard).get(0) == -1){
+                movePileCard(targetStack);
+            }
+            else if(isValidMove(moveCard,targetCard)){
                 move(moveCard, targetStack);
             }
         }
