@@ -25,6 +25,7 @@ import java.util.HashMap;
 public class GameActivity extends AppCompatActivity {
 
     HashMap<Integer, Card> gameState;
+    ArrayList<Integer>
     boolean isSelected;
     int selectedCard;
     GameLogic game;
@@ -131,12 +132,24 @@ public class GameActivity extends AppCompatActivity {
         aceButtons.add(aceStack4);
         //setAce stack to equal last card in stack
         count = 0;
-        for(Button button : aceButtons){
+        for(final Button button : aceButtons){
             button.setText("");
             if(game.getAceStacks().get(count).size() > 0){
                 String rank = game.getLastAceCard(count).getRank();
                 String suit = game.getLastAceCard(count).getSuit();
+                final Card card = game.getLastAceCard(count);
                 button.setText(rank + suit);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.i("TAG", "index :" + button.getId());
+                        Toast.makeText(getApplicationContext(),
+                                "Selected Button Rank :" + button.getId()+ card.isRevealed() ,
+                                Toast.LENGTH_SHORT).show();
+                        selectedCard = button.getId();
+                        isSelected = true;
+                    }
+                });
             }
             count++;
         }
@@ -196,6 +209,7 @@ public class GameActivity extends AppCompatActivity {
                                 redrawGame.makeValidMove(redrawGame.getPileCard(),
                                         redrawGame.getGameStacks().indexOf(stack));
                             }
+                            else if(selectedCard == )
                             else {
                                 redrawGame.makeValidMove(gameState.get(selectedCard),
                                         redrawGame.getGameStacks().indexOf(stack));
