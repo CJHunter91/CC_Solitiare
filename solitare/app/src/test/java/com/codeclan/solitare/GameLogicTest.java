@@ -330,20 +330,20 @@ public class GameLogicTest {
         assertEquals(card, game.getCard(0,1));
     }
 
-//    @Test
-//    public void canMoveFromAceStack(){
-//        game.newGame();
-//        game.deckDraw();
-//        game.getCard(-1,0).setRank("A");
-//        game.getCard(-1,0).setSuit("D");
-//        Card card = game.getCard(-1,0);
-//        game.moveToAce(game.getCard(-1,0));
-//        game.getCard(0,0).setRank("2");
-//        game.getCard(0,0).setSuit("C");
-//        game.makeValidMove(game.getLastAceCard(0), 0);
-//        assertEquals(card, game.getCard(0,1));
-//        assertEquals(0, game.getAceStacks().get(0).size());
-//    }
+    @Test
+    public void canMoveFromAceStack(){
+        game.newGame();
+        game.deckDraw();
+        game.getCard(-1,0).setRank("A");
+        game.getCard(-1,0).setSuit("D");
+        Card card = game.getCard(-1,0);
+        game.moveToAce(game.getCard(-1,0));
+        game.getCard(0,0).setRank("2");
+        game.getCard(0,0).setSuit("C");
+        game.makeValidMove(game.getLastAceCard(0), 0);
+        assertEquals(card, game.getCard(0,1));
+        assertEquals(0, game.getAceStacks().get(0).size());
+    }
 
     @Test
     public void testCanGetLastItemInAceStack(){

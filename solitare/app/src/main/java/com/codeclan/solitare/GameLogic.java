@@ -70,8 +70,12 @@ public class GameLogic {
 
 
     public Card getLastAceCard(int stack){
-        return this.aceStacks.get(stack).get(this.aceStacks.get(stack).size() -1);
+        if (aceStacks.get(stack).size() > 0) {
+            return this.aceStacks.get(stack).get(this.aceStacks.get(stack).size() - 1);
+        }
+        return null;
     }
+
     public ArrayList<Card> getRemainingDeck() {
         return this.deck.getDeck();
     }
@@ -268,7 +272,18 @@ public class GameLogic {
 
         if(this.gameStacks.get(targetStack).size() > 0){
             Card targetCard = getCard(targetStack, this.gameStacks.get(targetStack).size()-1);
-            if(isValidMove(moveCard,targetCard) && findCard(moveCard).get(0) == -1){
+            if(moveCard == getLastAceCard(0)
+                    || moveCard == getLastAceCard(1)
+                    || moveCard == getLastAceCard(2)
+                    || moveCard == getLastAceCard(3)){
+                for(int i = 0; i < 4; i++){
+                    if(moveCard == getLastAceCard(i)){
+                        moveFromAceStack(i, targetStack);
+                        break;
+                    }
+                }
+            }
+            else if(isValidMove(moveCard,targetCard) && findCard(moveCard).get(0) == -1){
                 movePileCard(targetStack);
             }
             else if(isValidMove(moveCard,targetCard)){
