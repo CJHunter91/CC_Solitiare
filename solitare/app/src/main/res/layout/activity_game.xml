@@ -49,11 +49,11 @@
         android:id="@+id/ace_stack1"
         android:layout_width="50dp"
         android:layout_height="70dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginTop="0dp"
         app:layout_constraintRight_toLeftOf="@+id/ace_stack2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="4dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/ace_stack2"

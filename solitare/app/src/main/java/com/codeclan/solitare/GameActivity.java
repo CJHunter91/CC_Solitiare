@@ -84,6 +84,7 @@ public class GameActivity extends AppCompatActivity {
         int count = 0;
         //create view for pile card
         final Button pileCard = (Button) findViewById(R.id.pile);
+        pileCard.setTextSize(14);
         if(game.getPile().size() > 0) {
             final Card pileCardObject = redrawGame.getPileCard();
             pileCard.setTextColor(Color.BLACK);
@@ -96,9 +97,6 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public boolean onLongClick(View view) {
                     Log.i("TAG", "index :" + "Pile");
-                    Toast.makeText(getApplicationContext(),
-                            "Clicked Button Rank :" + "Pile",
-                            Toast.LENGTH_SHORT).show();
                     redrawGame.moveToAce(pileCardObject);
                     reDrawState(redrawGame, gameStacks);
                     return true;
@@ -109,9 +107,6 @@ public class GameActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
                         Log.i("TAG", "index :" + pileCard.getId());
-                        Toast.makeText(getApplicationContext(),
-                                "Selected Button Rank :" + pileCard.getId(),
-                                Toast.LENGTH_SHORT).show();
                         selectedCard = pileCard.getId();
                         isSelected = true;
                     }
@@ -138,6 +133,7 @@ public class GameActivity extends AppCompatActivity {
                 String rank = game.getLastAceCard(count).getRank();
                 String suit = game.getLastAceCard(count).getSuit();
                 final Card card = game.getLastAceCard(count);
+                button.setTextSize(14);
                 button.setText(rank + suit);
                 button.setTextColor(Color.BLACK);
                 if(game.getColour(redrawGame.getLastAceCard(count)).equals("R")){
@@ -148,9 +144,6 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Log.i("TAG", "index :" + button.getId());
-                        Toast.makeText(getApplicationContext(),
-                                "Selected Button Rank :" + button.getId()+ card.isRevealed() ,
-                                Toast.LENGTH_SHORT).show();
                         selectedCard = button.getId();
                         isSelected = true;
                     }
@@ -178,7 +171,7 @@ public class GameActivity extends AppCompatActivity {
                 }
 
                 cardButton.setId(count);
-                cardButton.setTextSize(10);
+                cardButton.setTextSize(14);
                 if(game.getColour(card).equals("R")){
                     cardButton.setTextColor(Color.RED);
                 }
@@ -187,7 +180,7 @@ public class GameActivity extends AppCompatActivity {
                     cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 200));
                 }
                 else{
-                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 100));
+                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 120));
                 }
                 linearRow.addView(cardButton);
                 linearColumn.addView(linearRow);
@@ -196,9 +189,6 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public boolean onLongClick(View view) {
                         Log.i("TAG", "index :" + index);
-                        Toast.makeText(getApplicationContext(),
-                                "Clicked Button Rank :" + index,
-                                Toast.LENGTH_SHORT).show();
                         redrawGame.moveToAce(card);
                         reDrawState(redrawGame, gameStacks);
                         return true;
@@ -210,9 +200,6 @@ public class GameActivity extends AppCompatActivity {
 
                         if(isSelected){
                             Log.i("TAG", "index :" + index);
-                            Toast.makeText(getApplicationContext(),
-                                    "Clicked Button Rank :" + index + card.isRevealed(),
-                                    Toast.LENGTH_SHORT).show();
                             if (selectedCard == pileCard.getId()){
                                 redrawGame.makeValidMove(redrawGame.getPileCard(),
                                         redrawGame.getGameStacks().indexOf(stack));
@@ -226,9 +213,6 @@ public class GameActivity extends AppCompatActivity {
                         }
                         else{
                             Log.i("TAG", "index :" + index);
-                            Toast.makeText(getApplicationContext(),
-                                    "Selected Button Rank :" + index + card.isRevealed(),
-                                    Toast.LENGTH_SHORT).show();
                             selectedCard = index;
                             isSelected = true;
                         }
@@ -250,9 +234,6 @@ public class GameActivity extends AppCompatActivity {
 
                         if(isSelected){
                             Log.i("TAG", "index :" + index);
-                            Toast.makeText(getApplicationContext(),
-                                    "Clicked Button Rank :" + index + "Empty",
-                                    Toast.LENGTH_SHORT).show();
                             if (selectedCard == pileCard.getId()){
                                 redrawGame.makeValidMove(redrawGame.getPileCard(),
                                         redrawGame.getGameStacks().indexOf(stack));
