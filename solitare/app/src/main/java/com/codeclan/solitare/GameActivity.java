@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
         reDrawState(game, gameStack1);
 
 
-        Button deckCard = (Button) findViewById(R.id.draw);
+        ImageButton deckCard = (ImageButton) findViewById(R.id.draw);
         deckCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,6 +176,7 @@ public class GameActivity extends AppCompatActivity {
                 if(card.isRevealed()){
                     cardButton.setText(card.getRank() + card.getSuit());
                 }
+
                 cardButton.setId(count);
                 cardButton.setTextSize(10);
                 if(game.getColour(card).equals("R")){
@@ -264,6 +266,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                     }
                 });
+                linearRow.setMinimumWidth(0);
                 linearRow.addView(cardButton);
                 linearColumn.addView(linearRow);
                 count++;
