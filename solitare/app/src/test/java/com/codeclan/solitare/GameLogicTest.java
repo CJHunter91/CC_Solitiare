@@ -419,6 +419,17 @@ public class GameLogicTest {
     }
 
 
+    @Test
+    public void checkGameIsWon(){
+        game.newGame();
+        for(int j = 0; j < 4; j++) {
+            for (int i = 0; i < 13; i++) {
+                Card card = new Card("A", "S", true);
+                game.getAceStacks().get(j).add(card);
+            }
+        }
+        assertEquals(true, game.gameWon());
+    }
 
 
 }

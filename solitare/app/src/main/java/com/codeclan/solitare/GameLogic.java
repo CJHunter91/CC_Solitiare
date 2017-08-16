@@ -13,12 +13,14 @@ public class GameLogic {
     private ArrayList<ArrayList<Card>> gameStacks;
     private Deck deck;
     private ArrayList<Card> pile;
+    private boolean isWon;
 
     public GameLogic(){
         this.deck = new Deck();
         this.gameStacks = new ArrayList<>();
         this.aceStacks = new ArrayList<>();
         this.pile = new ArrayList<>();
+        this.isWon = false;
     }
 
     private void  buildAceStack(){
@@ -149,6 +151,18 @@ public class GameLogic {
         buildAceStack();
     }
 
+    public boolean gameWon() {
+        for(ArrayList<Card> stack : getAceStacks()){
+            if(stack.size() == 13){
+                isWon = true;
+            }
+            else{
+                isWon =false;
+            }
+        }
+        return isWon;
+    }
+
     public void deckDraw(){
         if(getRemainingDeck().size() <= 0){
             this.deck.setDeck(new ArrayList<>(pile));
@@ -265,9 +279,6 @@ public class GameLogic {
         }
 
     }
-
-
-
 
 
 
