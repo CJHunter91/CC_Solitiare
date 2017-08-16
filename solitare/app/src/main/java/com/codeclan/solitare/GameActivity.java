@@ -208,6 +208,7 @@ public class GameActivity extends AppCompatActivity {
                 Button cardButton = new Button(this);
                 cardButton.setText("");
                 cardButton.setId(count);
+                cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
                 LinearLayout linearColumn = new LinearLayout(this);
                 linearColumn.setOrientation(LinearLayout.HORIZONTAL);
                 linearColumn.addView(cardButton);
