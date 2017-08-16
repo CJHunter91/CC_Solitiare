@@ -39,7 +39,6 @@ public class GameActivity extends AppCompatActivity {
         game = new GameLogic();
         game.newGame();
 
-
         //find the gameStacks view
         gameStack1 = (LinearLayout) findViewById(R.id.game_stacks);
         gameStack1.setOrientation(LinearLayout.HORIZONTAL);
