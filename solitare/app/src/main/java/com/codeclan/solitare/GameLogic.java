@@ -255,8 +255,13 @@ public class GameLogic {
                 move(moveCard, targetStack);
             }
         }
-        else if(moveCard.getRank().equals("K")){
-            move(moveCard, targetStack);
+        else if(moveCard.getRank().equals("K") && gameStacks.get(targetStack).size() == 0){
+            if(findCard(moveCard).get(0) == -1){
+                movePileCard(targetStack);
+            }
+            else{
+                move(moveCard, targetStack);
+            }
         }
 
     }

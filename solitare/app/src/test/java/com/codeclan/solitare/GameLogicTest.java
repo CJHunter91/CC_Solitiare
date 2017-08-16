@@ -394,6 +394,19 @@ public class GameLogicTest {
     }
 
     @Test
+    public void canMoveKingToEmptyStackFromPile(){
+        game.newGame();
+        game.deckDraw();
+        game.removeCard(1,1);
+        game.removeCard(1,0);
+        game.getPileCard().setRank("K");
+        game.getPileCard().setSuit("C");
+        Card card = game.getPileCard();
+        game.makeValidMove(game.getPileCard(), 1);
+        assertEquals(card, game.getCard(1,0));
+    }
+
+    @Test
     public void canRevealOnKingMove(){
         game.newGame();
         game.removeCard(1,1);
