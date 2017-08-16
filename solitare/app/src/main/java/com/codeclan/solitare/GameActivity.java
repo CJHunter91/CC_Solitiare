@@ -160,14 +160,16 @@ public class GameActivity extends AppCompatActivity {
 
         //go through the gameStacks to display cards
         for(final ArrayList<Card> stack : game.getGameStacks()) {
-            LinearLayout linearRow = new LinearLayout(this);
-            linearRow.setOrientation(LinearLayout.VERTICAL);
+            LinearLayout linearColumn = new LinearLayout(this);
+            linearColumn.setOrientation(LinearLayout.VERTICAL);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
+            linearColumn.setLayoutParams(params);
             //need to create condition that if stack == 0 create one empty button
             for (final Card card : stack) {
                 //update hash
                 gameState.put(count, card);
-                LinearLayout linearColumn = new LinearLayout(this);
-                linearColumn.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout linearRow = new LinearLayout(this);
+                linearRow.setOrientation(LinearLayout.HORIZONTAL);
 
                 Button cardButton = new Button(this);
                 if(card.isRevealed()){
@@ -180,13 +182,13 @@ public class GameActivity extends AppCompatActivity {
                 }
                 //make the last items height larger
                 if(stack.indexOf(card) == stack.size()-1) {
-                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
+                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 200));
                 }
                 else{
-                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 100));
+                    cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 100));
                 }
-                linearColumn.addView(cardButton);
-                linearRow.addView(linearColumn);
+                linearRow.addView(cardButton);
+                linearColumn.addView(linearRow);
                 final int index = count;
                 cardButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -237,9 +239,9 @@ public class GameActivity extends AppCompatActivity {
                 cardButton.setText("");
                 final int index = count;
                 cardButton.setId(count);
-                cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(150, 200));
-                LinearLayout linearColumn = new LinearLayout(this);
-                linearColumn.setOrientation(LinearLayout.HORIZONTAL);
+                cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 200));
+                LinearLayout linearRow = new LinearLayout(this);
+                linearRow.setOrientation(LinearLayout.HORIZONTAL);
                 cardButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -262,12 +264,12 @@ public class GameActivity extends AppCompatActivity {
                         }
                     }
                 });
-                linearColumn.addView(cardButton);
-                linearRow.addView(linearColumn);
+                linearRow.addView(cardButton);
+                linearColumn.addView(linearRow);
                 count++;
             }
 
-            gameStacks.addView(linearRow);
+            gameStacks.addView(linearColumn);
         }
     }
 }
