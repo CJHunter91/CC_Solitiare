@@ -25,7 +25,6 @@ import java.util.HashMap;
 public class GameActivity extends AppCompatActivity {
 
     HashMap<Integer, Card> gameState;
-    ArrayList<Integer>
     boolean isSelected;
     int selectedCard;
     GameLogic game;
@@ -139,6 +138,7 @@ public class GameActivity extends AppCompatActivity {
                 String suit = game.getLastAceCard(count).getSuit();
                 final Card card = game.getLastAceCard(count);
                 button.setText(rank + suit);
+                gameState.put(button.getId(), card);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -209,7 +209,6 @@ public class GameActivity extends AppCompatActivity {
                                 redrawGame.makeValidMove(redrawGame.getPileCard(),
                                         redrawGame.getGameStacks().indexOf(stack));
                             }
-                            else if(selectedCard == )
                             else {
                                 redrawGame.makeValidMove(gameState.get(selectedCard),
                                         redrawGame.getGameStacks().indexOf(stack));
@@ -250,7 +249,7 @@ public class GameActivity extends AppCompatActivity {
                                 redrawGame.makeValidMove(redrawGame.getPileCard(),
                                         redrawGame.getGameStacks().indexOf(stack));
                             }
-                            else {
+                            else{
                                 redrawGame.makeValidMove(gameState.get(selectedCard),
                                         redrawGame.getGameStacks().indexOf(stack));
                             }
