@@ -1,4 +1,4 @@
-My own version of Solitare on Android
+My own version of Solitaire on Android
 
 Project is made using Java on Android IDE
 
