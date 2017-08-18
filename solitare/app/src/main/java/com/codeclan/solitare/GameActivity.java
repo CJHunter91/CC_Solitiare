@@ -73,22 +73,36 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void reDrawState(GameLogic game, final LinearLayout gameStacks){
+    public void winToast(GameLogic game){
         if(game.gameWon()){
             Toast.makeText(getApplicationContext(),
                     "You Won in 'TIME HERE'",
                     Toast.LENGTH_SHORT).show();
         }
-        final GameLogic redrawGame = game;
-        gameStacks.removeAllViews();
+    }
+
+    public void reDrawState(final GameLogic game, final LinearLayout gameStacks){
         int count = 0;
+        gameStacks.removeAllViews();
+
+        // display toast if game won
+        winToast(game);
+        //create pile cards and get pileCard
+        final Button pileCard = pileCardSetup(gameStacks);
+        aceCardSetup();
+        //go through the gameStacks to display cards
+        gameStackSetup(pileCard, gameStacks);
+
+    }
+
+    public Button pileCardSetup(final LinearLayout gameStacks){
         //create view for pile card
         final Button pileCard = (Button) findViewById(R.id.pile);
         pileCard.setTextSize(14);
         if(game.getPile().size() > 0) {
-            final Card pileCardObject = redrawGame.getPileCard();
+            final Card pileCardObject = game.getPileCard();
             pileCard.setTextColor(Color.BLACK);
-            if(game.getColour(redrawGame.getPileCard()).equals("R")){
+            if(game.getColour(game.getPileCard()).equals("R")){
                 pileCard.setTextColor(Color.RED);
             }
 
@@ -97,8 +111,8 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public boolean onLongClick(View view) {
                     Log.i("TAG", "index :" + "Pile");
-                    redrawGame.moveToAce(pileCardObject);
-                    reDrawState(redrawGame, gameStacks);
+                    game.moveToAce(pileCardObject);
+                    reDrawState(game, gameStacks);
                     return true;
                 }
             });
@@ -106,15 +120,21 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                        Log.i("TAG", "index :" + Integer.toString(pileCard.getId()));
-                        selectedCard = pileCard.getId();
-                        isSelected = true;
-                    }
+                    Log.i("TAG", "index :" + Integer.toString(pileCard.getId()));
+                    selectedCard = pileCard.getId();
+                    isSelected = true;
+                }
             });
         }
         else{
             pileCard.setText("");
         }
+
+        return pileCard;
+    }
+
+    public void aceCardSetup(){
+
         // find ace stacks
         ArrayList<Button> aceButtons = new ArrayList<>();
         Button aceStack1 = (Button) findViewById(R.id.ace_stack1);
@@ -126,7 +146,7 @@ public class GameActivity extends AppCompatActivity {
         aceButtons.add(aceStack3);
         aceButtons.add(aceStack4);
         //setAce stack to equal last card in stack
-        count = 0;
+        int count = 0;
         for(final Button button : aceButtons){
             button.setText("");
             if(game.getAceStacks().get(count).size() > 0){
@@ -136,7 +156,7 @@ public class GameActivity extends AppCompatActivity {
                 button.setTextSize(14);
                 button.setText(rank + suit);
                 button.setTextColor(Color.BLACK);
-                if(game.getColour(redrawGame.getLastAceCard(count)).equals("R")){
+                if(game.getColour(game.getLastAceCard(count)).equals("R")){
                     button.setTextColor(Color.RED);
                 }
                 gameState.put(button.getId(), card);
@@ -152,13 +172,16 @@ public class GameActivity extends AppCompatActivity {
             count++;
         }
 
-        //go through the gameStacks to display cards
+    }
+
+    public void gameStackSetup(final Button pileCard, final LinearLayout gameStacks){
+
+        int count = 0;
         for(final ArrayList<Card> stack : game.getGameStacks()) {
             LinearLayout linearColumn = new LinearLayout(this);
             linearColumn.setOrientation(LinearLayout.VERTICAL);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
             linearColumn.setLayoutParams(params);
-            //need to create condition that if stack == 0 create one empty button
             for (final Card card : stack) {
                 //update hash
                 gameState.put(count, card);
@@ -190,63 +213,26 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public boolean onLongClick(View view) {
                         Log.d("TAG", "index :" + Integer.toString(index));
-                        redrawGame.moveToAce(card);
-                        reDrawState(redrawGame, gameStacks);
+                        game.moveToAce(card);
+                        reDrawState(game, gameStacks);
                         return true;
                     }
                 });
-                cardButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (!redrawGame.gameWon()) {
-                            if (isSelected) {
-                                Log.i("TAG", "index :" + Integer.toString(index));
-                                if (selectedCard == pileCard.getId()) {
-                                    redrawGame.makeValidMove(redrawGame.getPileCard(),
-                                            redrawGame.getGameStacks().indexOf(stack));
-                                } else {
-                                    redrawGame.makeValidMove(gameState.get(selectedCard),
-                                            redrawGame.getGameStacks().indexOf(stack));
-                                }
-                                reDrawState(redrawGame, gameStacks);
-                                isSelected = false;
-                            } else {
-                                Log.i("TAG", "index :" + Integer.toString(index));
-                                selectedCard = index;
-                                isSelected = true;
-                            }
-                        }
-                    }
-                });
+                CardMoveSpec cms = new CardMoveSpec(cardButton , stack, gameStacks, index, pileCard);
+                // call to create button onclick listener
+                gameCardButtonClickHandler(cms);
                 count++;
             }
+            // creates blank empty button
             if(stack.size() == 0){
                 Button cardButton = new Button(this);
                 cardButton.setText("");
-                final int index = count;
-                cardButton.setId(count);
                 cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 200));
                 LinearLayout linearRow = new LinearLayout(this);
                 linearRow.setOrientation(LinearLayout.HORIZONTAL);
-                cardButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        if(isSelected){
-                            Log.i("TAG", "index :" + Integer.toString(index));
-                            if (selectedCard == pileCard.getId()){
-                                redrawGame.makeValidMove(redrawGame.getPileCard(),
-                                        redrawGame.getGameStacks().indexOf(stack));
-                            }
-                            else{
-                                redrawGame.makeValidMove(gameState.get(selectedCard),
-                                        redrawGame.getGameStacks().indexOf(stack));
-                            }
-                            reDrawState(redrawGame, gameStacks);
-                            isSelected = false;
-                        }
-                    }
-                });
+                CardMoveSpec cms = new CardMoveSpec(cardButton , stack, gameStacks,pileCard);
+                // call to create button onclick listener
+                gameCardButtonClickHandler(cms);
                 linearRow.setMinimumWidth(0);
                 linearRow.addView(cardButton);
                 linearColumn.addView(linearRow);
@@ -256,5 +242,34 @@ public class GameActivity extends AppCompatActivity {
             gameStacks.addView(linearColumn);
         }
     }
+
+    public void gameCardButtonClickHandler(final CardMoveSpec cms){
+        final int index = cms.getIndex();
+        final ArrayList<Card> stack = cms.getStack();
+        cms.getCardButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isSelected && !game.gameWon()) {
+                    Log.i("TAG", "index :" + Integer.toString(index));
+                    if (selectedCard == cms.getPileCard().getId()) {
+                        game.makeValidMove(game.getPileCard(),
+                                game.getGameStacks().indexOf(stack));
+                    } else {
+                        game.makeValidMove(gameState.get(selectedCard),
+                                game.getGameStacks().indexOf(stack));
+                    }
+                    reDrawState(game, cms.getGameStacks());
+                    isSelected = false;
+                } else if(gameState.containsKey(cms.getIndex())) {
+                    Log.i("TAG", "index :" + Integer.toString(index));
+                    selectedCard = index;
+                    isSelected = true;
+                }
+            }
+
+        });
+    }
+
+
 }
 
