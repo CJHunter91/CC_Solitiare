@@ -272,10 +272,10 @@ public class GameLogic {
 
         if(this.gameStacks.get(targetStack).size() > 0){
             Card targetCard = getCard(targetStack, this.gameStacks.get(targetStack).size()-1);
-            if(isValidMove(moveCard,targetCard) && moveCard == getLastAceCard(0)
-                    || moveCard == getLastAceCard(1)
-                    || moveCard == getLastAceCard(2)
-                    || moveCard == getLastAceCard(3)){
+            if((isValidMove(moveCard,targetCard) && moveCard == getLastAceCard(0)) ||
+                    (isValidMove(moveCard,targetCard) && moveCard == getLastAceCard(1)) ||
+                    (isValidMove(moveCard,targetCard) && moveCard == getLastAceCard(2)) ||
+                    (isValidMove(moveCard,targetCard) && moveCard == getLastAceCard(3))) {
                 for(int i = 0; i < 4; i++){
                     if(moveCard == getLastAceCard(i)){
                         moveFromAceStack(i, targetStack);

@@ -106,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                        Log.i("TAG", "index :" + pileCard.getId());
+                        Log.i("TAG", "index :" + Integer.toString(pileCard.getId()));
                         selectedCard = pileCard.getId();
                         isSelected = true;
                     }
@@ -143,7 +143,7 @@ public class GameActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i("TAG", "index :" + button.getId());
+                        Log.d("TAG", "index :" + Integer.toString(button.getId()));
                         selectedCard = button.getId();
                         isSelected = true;
                     }
@@ -185,10 +185,11 @@ public class GameActivity extends AppCompatActivity {
                 linearRow.addView(cardButton);
                 linearColumn.addView(linearRow);
                 final int index = count;
+
                 cardButton.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
-                        Log.i("TAG", "index :" + index);
+                        Log.d("TAG", "index :" + Integer.toString(index));
                         redrawGame.moveToAce(card);
                         reDrawState(redrawGame, gameStacks);
                         return true;
@@ -197,24 +198,23 @@ public class GameActivity extends AppCompatActivity {
                 cardButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        if(isSelected){
-                            Log.i("TAG", "index :" + index);
-                            if (selectedCard == pileCard.getId()){
-                                redrawGame.makeValidMove(redrawGame.getPileCard(),
-                                        redrawGame.getGameStacks().indexOf(stack));
+                        if (!redrawGame.gameWon()) {
+                            if (isSelected) {
+                                Log.i("TAG", "index :" + Integer.toString(index));
+                                if (selectedCard == pileCard.getId()) {
+                                    redrawGame.makeValidMove(redrawGame.getPileCard(),
+                                            redrawGame.getGameStacks().indexOf(stack));
+                                } else {
+                                    redrawGame.makeValidMove(gameState.get(selectedCard),
+                                            redrawGame.getGameStacks().indexOf(stack));
+                                }
+                                reDrawState(redrawGame, gameStacks);
+                                isSelected = false;
+                            } else {
+                                Log.i("TAG", "index :" + Integer.toString(index));
+                                selectedCard = index;
+                                isSelected = true;
                             }
-                            else {
-                                redrawGame.makeValidMove(gameState.get(selectedCard),
-                                        redrawGame.getGameStacks().indexOf(stack));
-                            }
-                            reDrawState(redrawGame, gameStacks);
-                            isSelected = false;
-                        }
-                        else{
-                            Log.i("TAG", "index :" + index);
-                            selectedCard = index;
-                            isSelected = true;
                         }
                     }
                 });
@@ -233,7 +233,7 @@ public class GameActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         if(isSelected){
-                            Log.i("TAG", "index :" + index);
+                            Log.i("TAG", "index :" + Integer.toString(index));
                             if (selectedCard == pileCard.getId()){
                                 redrawGame.makeValidMove(redrawGame.getPileCard(),
                                         redrawGame.getGameStacks().indexOf(stack));

@@ -345,6 +345,8 @@ public class GameLogicTest {
         assertEquals(0, game.getAceStacks().get(0).size());
     }
 
+
+
     @Test
     public void testCanGetLastItemInAceStack(){
         game.newGame();
