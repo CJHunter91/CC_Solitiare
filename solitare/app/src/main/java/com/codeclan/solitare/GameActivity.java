@@ -185,6 +185,8 @@ public class GameActivity extends AppCompatActivity {
             for (final Card card : stack) {
                 //update hash
                 gameState.put(count, card);
+
+                //create layout
                 LinearLayout linearRow = new LinearLayout(this);
                 linearRow.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -192,7 +194,6 @@ public class GameActivity extends AppCompatActivity {
                 if(card.isRevealed()){
                     cardButton.setText(card.getRank() + card.getSuit());
                 }
-
                 cardButton.setId(count);
                 cardButton.setTextSize(14);
                 if(game.getColour(card).equals("R")){
@@ -205,6 +206,7 @@ public class GameActivity extends AppCompatActivity {
                 else{
                     cardButton.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 120));
                 }
+                //add button to the row and and the row to the column
                 linearRow.addView(cardButton);
                 linearColumn.addView(linearRow);
                 final int index = count;
@@ -233,6 +235,7 @@ public class GameActivity extends AppCompatActivity {
                 CardMoveSpec cms = new CardMoveSpec(cardButton , stack, gameStacks,pileCard);
                 // call to create button onclick listener
                 gameCardButtonClickHandler(cms);
+                //add empty button the the layouts if needed
                 linearRow.setMinimumWidth(0);
                 linearRow.addView(cardButton);
                 linearColumn.addView(linearRow);
