@@ -2,6 +2,10 @@ My own version of Solitaire on Android
 
 Project is made using Java on Android IDE
 
+Installation
+
+  * Install apk file and play
+
 MVP
 
   * ability to create a new game
